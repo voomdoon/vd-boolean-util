@@ -101,6 +101,9 @@ class BooleanMatrixFormatterTest {
 	 */
 	private abstract class TestBase extends de.voomdoon.testing.tests.TestBase {
 
+		/**
+		 * @since 0.1.0
+		 */
 		protected BooleanMatrixFormatter formatter = new BooleanMatrixFormatter();
 	}
 }
