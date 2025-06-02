@@ -24,22 +24,22 @@ public class BooleanMatrixFormatter {
 		/**
 		 * @since 0.1.0
 		 */
-		DOUBLE_WIDTH_FULL_LINE_BLOCKS,
+		DOUBLE_WIDTH_BLOCKS,
 
 		/**
 		 * @since 0.1.0
 		 */
-		HALF_LINE_BLOCKS,
+		HALF_BLOCKS,
 
 		/**
 		 * @since 0.1.0
 		 */
-		ONE_ZERO,
+		ONE_AND_ZERO,
 
 		/**
 		 * @since 0.1.0
 		 */
-		TRUE_FALSE,
+		TRUE_AND_FALSE_WITH_SEPARATOR,
 
 		;
 	}
@@ -52,6 +52,26 @@ public class BooleanMatrixFormatter {
 	 * @since 0.1.0
 	 */
 	private static class HalfLineBlocksFormatter {
+
+		/**
+		 * @since 0.1.0
+		 */
+		private static final String BOTH = "█";
+
+		/**
+		 * @since 0.1.0
+		 */
+		private static final String BOTTOM = "▄";
+
+		/**
+		 * @since 0.1.0
+		 */
+		private static final String EMPTY = " ";
+
+		/**
+		 * @since 0.1.0
+		 */
+		private static final String TOP = "▀";
 
 		/**
 		 * DOCME add JavaDoc for method addFirstPassElement
@@ -155,32 +175,12 @@ public class BooleanMatrixFormatter {
 	/**
 	 * @since 0.1.0
 	 */
-	private static final String BOTH = "█";
-
-	/**
-	 * @since 0.1.0
-	 */
-	private static final String BOTTOM = "▄";
-
-	/**
-	 * @since 0.1.0
-	 */
-	private static final String EMPTY = " ";
-
-	/**
-	 * @since 0.1.0
-	 */
 	private static final HalfLineBlocksFormatter HALF_LINE_BLOCKS_FORMATTER = new HalfLineBlocksFormatter();
 
 	/**
 	 * @since 0.1.0
 	 */
-	private static final String TOP = "▀";
-
-	/**
-	 * @since 0.1.0
-	 */
-	private Format format = Format.TRUE_FALSE;
+	private Format format = Format.TRUE_AND_FALSE_WITH_SEPARATOR;
 
 	/**
 	 * DOCME add JavaDoc for method format
@@ -192,7 +192,7 @@ public class BooleanMatrixFormatter {
 	public String format(boolean[][] matrix) {
 		if (matrix.length == 0) {
 			return "";
-		} else if (format == Format.HALF_LINE_BLOCKS) {
+		} else if (format == Format.HALF_BLOCKS) {
 			return HALF_LINE_BLOCKS_FORMATTER.format(matrix);
 		}
 
@@ -204,7 +204,7 @@ public class BooleanMatrixFormatter {
 			}
 
 			for (int iColumn = 0; iColumn < matrix[iRow].length; iColumn++) {
-				if (format == Format.TRUE_FALSE && iColumn > 0) {
+				if (format == Format.TRUE_AND_FALSE_WITH_SEPARATOR && iColumn > 0) {
 					sb.append(",");
 				}
 
@@ -236,9 +236,9 @@ public class BooleanMatrixFormatter {
 	 */
 	private String format(boolean b) {
 		return switch (format) {
-			case TRUE_FALSE -> Boolean.toString(b);
-			case ONE_ZERO -> b ? "1" : "0";
-			case DOUBLE_WIDTH_FULL_LINE_BLOCKS -> b ? "██" : "  ";
+			case TRUE_AND_FALSE_WITH_SEPARATOR -> Boolean.toString(b);
+			case ONE_AND_ZERO -> b ? "1" : "0";
+			case DOUBLE_WIDTH_BLOCKS -> b ? "██" : "  ";
 			default -> throw new UnsupportedOperationException("Format '" + format + "' not supported!");
 		};
 	}

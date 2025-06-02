@@ -29,7 +29,7 @@ class BooleanMatrixFormatterTest {
 		 * @since 0.1.0
 		 */
 		@Test
-		void test_empty() {
+		void test_emptyMatrix() {
 			logTestStart();
 
 			String actual = new BooleanMatrixFormatter().format(new boolean[0][0]);
@@ -53,7 +53,7 @@ class BooleanMatrixFormatterTest {
 		 */
 		@BeforeEach
 		void beforeEach_configureFormatter() {
-			formatter.withFormat(Format.ONE_ZERO);
+			formatter.withFormat(Format.ONE_AND_ZERO);
 		}
 
 		/**
@@ -113,14 +113,14 @@ class BooleanMatrixFormatterTest {
 	 * @since 0.1.0
 	 */
 	@Nested
-	class Format_doubleWidthFullLineBlocks_Test extends TestBase {
+	class Format_doubleWidthBlocks_Test extends TestBase {
 
 		/**
 		 * @since 0.1.0
 		 */
 		@BeforeEach
 		void beforeEach_configureFormatter() {
-			formatter.withFormat(Format.DOUBLE_WIDTH_FULL_LINE_BLOCKS);
+			formatter.withFormat(Format.DOUBLE_WIDTH_BLOCKS);
 		}
 
 		/**
@@ -168,14 +168,14 @@ class BooleanMatrixFormatterTest {
 	 * @since 0.1.0
 	 */
 	@Nested
-	class Format_halfLineBlocks_Test extends TestBase {
+	class Format_halfBlocks_Test extends TestBase {
 
 		/**
 		 * @since 0.1.0
 		 */
 		@BeforeEach
 		void beforeEach_configureFormatter() {
-			formatter.withFormat(Format.HALF_LINE_BLOCKS);
+			formatter.withFormat(Format.HALF_BLOCKS);
 		}
 
 		/**
