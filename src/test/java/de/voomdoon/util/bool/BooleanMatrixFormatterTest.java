@@ -5,8 +5,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import de.voomdoon.testing.tests.TestBase;
-
 /**
  * DOCME add JavaDoc for
  *
@@ -14,7 +12,28 @@ import de.voomdoon.testing.tests.TestBase;
  *
  * @since 0.1.0
  */
-class BooleanMatrixFormatterTest extends TestBase {
+class BooleanMatrixFormatterTest {
+
+	/**
+	 * @author André Schulz
+	 *
+	 * @since DOCME add inception version number
+	 */
+	@Nested
+	class BasicsTest extends TestBase {
+
+		/**
+		 * @since 0.1.0
+		 */
+		@Test
+		void test_empty() {
+			logTestStart();
+
+			String actual = new BooleanMatrixFormatter().format(new boolean[0][0]);
+
+			assertThat(actual).isEmpty();
+		}
+	}
 
 	/**
 	 * DOCME add JavaDoc for BooleanMatrixFormatterTest
@@ -33,7 +52,7 @@ class BooleanMatrixFormatterTest extends TestBase {
 		void test_columnSeparator() throws Exception {
 			logTestStart();
 
-			String actual = new BooleanMatrixFormatter().format(new boolean[][] { { true, true } });
+			String actual = formatter.format(new boolean[][] { { true, true } });
 
 			assertThat(actual).isEqualTo("true,true");
 		}
@@ -45,7 +64,7 @@ class BooleanMatrixFormatterTest extends TestBase {
 		void test_rowSeparator() throws Exception {
 			logTestStart();
 
-			String actual = new BooleanMatrixFormatter().format(new boolean[][] { { true }, { true } });
+			String actual = formatter.format(new boolean[][] { { true }, { true } });
 
 			assertThat(actual).isEqualTo("true\ntrue");
 		}
@@ -57,7 +76,7 @@ class BooleanMatrixFormatterTest extends TestBase {
 		void test_singleValue_false() throws Exception {
 			logTestStart();
 
-			String actual = new BooleanMatrixFormatter().format(new boolean[][] { { false } });
+			String actual = formatter.format(new boolean[][] { { false } });
 
 			assertThat(actual).isEqualTo("false");
 		}
@@ -69,21 +88,19 @@ class BooleanMatrixFormatterTest extends TestBase {
 		void test_singleValue_true() throws Exception {
 			logTestStart();
 
-			String actual = new BooleanMatrixFormatter().format(new boolean[][] { { true } });
+			String actual = formatter.format(new boolean[][] { { true } });
 
 			assertThat(actual).isEqualTo("true");
 		}
 	}
 
 	/**
-	 * @since 0.1.0
+	 * @author André Schulz
+	 *
+	 * @since DOCME add inception version number
 	 */
-	@Test
-	void test_empty() {
-		logTestStart();
+	private abstract class TestBase extends de.voomdoon.testing.tests.TestBase {
 
-		String actual = new BooleanMatrixFormatter().format(new boolean[0][0]);
-
-		assertThat(actual).isEmpty();
+		protected BooleanMatrixFormatter formatter = new BooleanMatrixFormatter();
 	}
 }
