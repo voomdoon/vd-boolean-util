@@ -21,6 +21,11 @@ public class BooleanMatrixFormatter {
 		/**
 		 * @since 0.1.0
 		 */
+		DOUBLE_WIDTH_FULL_LINE_BLOCKS,
+
+		/**
+		 * @since 0.1.0
+		 */
 		ONE_ZERO,
 
 		/**
@@ -90,6 +95,7 @@ public class BooleanMatrixFormatter {
 		return switch (format) {
 			case TRUE_FALSE -> Boolean.toString(b);
 			case ONE_ZERO -> b ? "1" : "0";
+			case DOUBLE_WIDTH_FULL_LINE_BLOCKS -> b ? "██" : "  ";
 			default -> throw new UnsupportedOperationException("Format '" + format + "' not supported!");
 		};
 	}

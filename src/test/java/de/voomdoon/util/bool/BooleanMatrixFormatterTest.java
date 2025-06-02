@@ -113,6 +113,61 @@ class BooleanMatrixFormatterTest {
 	 * @since 0.1.0
 	 */
 	@Nested
+	class Format_doubleWidthFullLineBlocks_Test extends TestBase {
+
+		/**
+		 * @since 0.1.0
+		 */
+		@BeforeEach
+		void beforeEach_configureFormatter() {
+			formatter.withFormat(Format.DOUBLE_WIDTH_FULL_LINE_BLOCKS);
+		}
+
+		/**
+		 * @since 0.1.0
+		 */
+		@Test
+		void test_rowSeparator() throws Exception {
+			logTestStart();
+
+			String actual = formatter.format(new boolean[][] { { true }, { true } });
+
+			assertThat(actual).isEqualTo("██\n██");
+		}
+
+		/**
+		 * @since 0.1.0
+		 */
+		@Test
+		void test_singleValue_false() throws Exception {
+			logTestStart();
+
+			String actual = formatter.format(new boolean[][] { { false } });
+
+			assertThat(actual).isEqualTo("  ");
+		}
+
+		/**
+		 * @since 0.1.0
+		 */
+		@Test
+		void test_singleValue_true() throws Exception {
+			logTestStart();
+
+			String actual = formatter.format(new boolean[][] { { true } });
+
+			assertThat(actual).isEqualTo("██");
+		}
+	}
+
+	/**
+	 * DOCME add JavaDoc for BooleanMatrixFormatterTest
+	 *
+	 * @author André Schulz
+	 *
+	 * @since 0.1.0
+	 */
+	@Nested
 	class Format_trueFalse_Test extends TestBase {
 
 		/**
