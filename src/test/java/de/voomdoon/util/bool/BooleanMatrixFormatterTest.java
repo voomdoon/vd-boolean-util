@@ -72,6 +72,18 @@ class BooleanMatrixFormatterTest {
 		 * @since 0.1.0
 		 */
 		@Test
+		void test_rowSeparator() throws Exception {
+			logTestStart();
+
+			String actual = formatter.format(new boolean[][] { { true }, { true } });
+
+			assertThat(actual).isEqualTo("1\n1");
+		}
+
+		/**
+		 * @since 0.1.0
+		 */
+		@Test
 		void test_singleValue_false() throws Exception {
 			logTestStart();
 
