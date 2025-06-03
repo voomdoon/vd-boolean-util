@@ -2,6 +2,7 @@ package de.voomdoon.util.bool;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * DOCME add JavaDoc for
@@ -11,6 +12,45 @@ import java.util.List;
  * @since 0.1.0
  */
 public class BooleanMatrixFormatter {
+
+	/**
+	 * DOCME add JavaDoc for BooleanMatrixFormatter
+	 *
+	 * @author André Schulz
+	 *
+	 * @since 0.1.0
+	 */
+	public static class BooleanMatrixFormatterBuilder {
+
+		/**
+		 * @since 0.1.0
+		 */
+		private Format format = Format.TRUE_AND_FALSE_WITH_SEPARATOR;
+
+		/**
+		 * DOCME add JavaDoc for method build
+		 * 
+		 * @return
+		 * 
+		 * @since 0.1.0
+		 */
+		public BooleanMatrixFormatter build() {
+			return new BooleanMatrixFormatter(format);
+		}
+
+		/**
+		 * DOCME add JavaDoc for method withFormat
+		 * 
+		 * @param format
+		 * @return
+		 * @since 0.1.0
+		 */
+		public BooleanMatrixFormatterBuilder withFormat(Format format) {
+			this.format = Objects.requireNonNull(format, "format");
+
+			return this;
+		}
+	}
 
 	/**
 	 * DOCME add JavaDoc for BooleanMatrixFormatter
@@ -178,9 +218,29 @@ public class BooleanMatrixFormatter {
 	private static final HalfLineBlocksFormatter HALF_LINE_BLOCKS_FORMATTER = new HalfLineBlocksFormatter();
 
 	/**
+	 * DOCME add JavaDoc for method builder
+	 * 
+	 * @return
 	 * @since 0.1.0
 	 */
-	private Format format = Format.TRUE_AND_FALSE_WITH_SEPARATOR;
+	public static BooleanMatrixFormatterBuilder builder() {
+		return new BooleanMatrixFormatterBuilder();
+	}
+
+	/**
+	 * @since 0.1.0
+	 */
+	private final Format format;
+
+	/**
+	 * DOCME add JavaDoc for constructor BooleanMatrixFormatter
+	 * 
+	 * @param format
+	 * @since 0.1.0
+	 */
+	public BooleanMatrixFormatter(Format format) {
+		this.format = format;
+	}
 
 	/**
 	 * DOCME add JavaDoc for method format
@@ -218,16 +278,6 @@ public class BooleanMatrixFormatter {
 	}
 
 	/**
-	 * DOCME add JavaDoc for method setFormat
-	 * 
-	 * @param format
-	 * @since 0.1.0
-	 */
-	public void withFormat(Format format) {
-		this.format = format;
-	}
-
-	/**
 	 * DOCME add JavaDoc for method format
 	 * 
 	 * @param b
@@ -242,5 +292,4 @@ public class BooleanMatrixFormatter {
 			default -> throw new UnsupportedOperationException("Format '" + format + "' not supported!");
 		};
 	}
-
 }
