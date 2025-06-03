@@ -268,7 +268,7 @@ public class BooleanMatrixFormatter {
 					sb.append(",");
 				}
 
-				sb.append(format(matrix[iRow][iColumn]));
+				sb.append(formatValue(matrix[iRow][iColumn]));
 
 			}
 		}
@@ -278,13 +278,12 @@ public class BooleanMatrixFormatter {
 	}
 
 	/**
-	 * DOCME add JavaDoc for method format
-	 * 
 	 * @param b
-	 * @return
+	 *            the value to format
+	 * @return {@link String}
 	 * @since 0.1.0
 	 */
-	private String format(boolean b) {
+	private String formatValue(boolean b) {
 		return switch (format) {
 			case TRUE_AND_FALSE_WITH_SEPARATOR -> Boolean.toString(b);
 			case ONE_AND_ZERO -> b ? "1" : "0";
