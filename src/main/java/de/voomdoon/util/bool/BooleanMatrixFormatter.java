@@ -25,6 +25,11 @@ public class BooleanMatrixFormatter {
 		/**
 		 * @since 0.1.0
 		 */
+		private String columnSeparator = ",";
+
+		/**
+		 * @since 0.1.0
+		 */
 		private Format format = Format.TRUE_AND_FALSE_WITH_SEPARATOR;
 
 		/**
@@ -35,7 +40,20 @@ public class BooleanMatrixFormatter {
 		 * @since 0.1.0
 		 */
 		public BooleanMatrixFormatter build() {
-			return new BooleanMatrixFormatter(format);
+			return new BooleanMatrixFormatter(format, columnSeparator);
+		}
+
+		/**
+		 * DOCME add JavaDoc for method withColumnSeparator
+		 * 
+		 * @param separator
+		 * @return
+		 * @since 0.1.0
+		 */
+		public BooleanMatrixFormatterBuilder withColumnSeparator(String separator) {
+			columnSeparator = Objects.requireNonNull(separator, "separator");
+
+			return this;
 		}
 
 		/**
@@ -227,6 +245,7 @@ public class BooleanMatrixFormatter {
 		return new BooleanMatrixFormatterBuilder();
 	}
 
+	private String columnSeparator;
 	/**
 	 * @since 0.1.0
 	 */
@@ -236,10 +255,12 @@ public class BooleanMatrixFormatter {
 	 * DOCME add JavaDoc for constructor BooleanMatrixFormatter
 	 * 
 	 * @param format
+	 * @param columnSeparator
 	 * @since 0.1.0
 	 */
-	public BooleanMatrixFormatter(Format format) {
+	private BooleanMatrixFormatter(Format format, String columnSeparator) {
 		this.format = format;
+		this.columnSeparator = columnSeparator;
 	}
 
 	/**
@@ -265,7 +286,7 @@ public class BooleanMatrixFormatter {
 
 			for (int iColumn = 0; iColumn < matrix[iRow].length; iColumn++) {
 				if (format == Format.TRUE_AND_FALSE_WITH_SEPARATOR && iColumn > 0) {
-					sb.append(",");
+					sb.append(columnSeparator);
 				}
 
 				sb.append(formatValue(matrix[iRow][iColumn]));

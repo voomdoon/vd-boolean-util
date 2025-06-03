@@ -94,6 +94,62 @@ class BooleanMatrixFormatterTest {
 		}
 
 		/**
+		 * DOCME add JavaDoc for BooleanMatrixFormatterTest.BuilderTest
+		 *
+		 * @author André Schulz
+		 *
+		 * @since 0.1.0
+		 */
+		@Nested
+		class WithColumnSeparatorTest extends de.voomdoon.testing.tests.TestBase {
+
+			/**
+			 * @since 0.1.0
+			 */
+			@Test
+			void test_error_IAE_null() throws Exception {
+				logTestStart();
+
+				BooleanMatrixFormatterBuilder builder = BooleanMatrixFormatter.builder();
+
+				assertThatThrownBy(() -> builder.withColumnSeparator(null)).isInstanceOf(NullPointerException.class)
+						.hasMessageContaining("separator");
+			}
+
+			/**
+			 * DOCME add JavaDoc for method test_isRespected
+			 * 
+			 * @since 0.1.0
+			 */
+			@Test
+			void test_isRespected() throws Exception {
+				logTestStart();
+
+				BooleanMatrixFormatterBuilder builder = BooleanMatrixFormatter.builder();
+				builder = builder.withColumnSeparator("SEPARATOR");
+				BooleanMatrixFormatter formatter = builder.build();
+
+				String actual = formatter.format(new boolean[][] { { false, true } });
+
+				assertThat(actual).contains("falseSEPARATORtrue");
+			}
+
+			/**
+			 * @since 0.1.0
+			 */
+			@Test
+			void test_result_sameInstance() throws Exception {
+				logTestStart();
+
+				BooleanMatrixFormatterBuilder builder = BooleanMatrixFormatter.builder();
+
+				BooleanMatrixFormatterBuilder actual = builder.withColumnSeparator(" ");
+
+				assertThat(actual).isSameAs(builder);
+			}
+		}
+
+		/**
 		 * Tests for {@link BooleanMatrixFormatter#withFormat(Format)}.
 		 *
 		 * @author André Schulz
