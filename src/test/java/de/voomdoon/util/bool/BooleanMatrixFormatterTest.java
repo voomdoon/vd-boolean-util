@@ -21,27 +21,6 @@ import de.voomdoon.util.bool.BooleanMatrixFormatter.Format;
 class BooleanMatrixFormatterTest {
 
 	/**
-	 * @author André Schulz
-	 *
-	 * @since 0.1.0
-	 */
-	@Nested
-	class BasicsTest extends TestBase {
-
-		/**
-		 * @since 0.1.0
-		 */
-		@Test
-		void test_emptyMatrix() {
-			logTestStart();
-
-			String actual = format(new boolean[0][0]);
-
-			assertThat(actual).isEmpty();
-		}
-	}
-
-	/**
 	 * DOCME add JavaDoc for BooleanMatrixFormatterTest
 	 *
 	 * @author André Schulz
@@ -219,14 +198,35 @@ class BooleanMatrixFormatterTest {
 	}
 
 	/**
-	 * DOCME add JavaDoc for BooleanMatrixFormatterTest
+	 * Tests for {@link BooleanMatrixFormatter#format(boolean[][])}.
 	 *
 	 * @author André Schulz
 	 *
-	 * @since DOCME add inception version number
+	 * @since 0.1.0
 	 */
 	@Nested
 	class FormatTests {
+
+		/**
+		 * @author André Schulz
+		 *
+		 * @since 0.1.0
+		 */
+		@Nested
+		class BasicsTest extends TestBase {
+
+			/**
+			 * @since 0.1.0
+			 */
+			@Test
+			void test_emptyMatrix() {
+				logTestStart();
+
+				String actual = format(new boolean[0][0]);
+
+				assertThat(actual).isEmpty();
+			}
+		}
 
 		/**
 		 * DOCME add JavaDoc for BooleanMatrixFormatterTest
@@ -280,6 +280,61 @@ class BooleanMatrixFormatterTest {
 				String actual = format(new boolean[][] { { true } });
 
 				assertThat(actual).isEqualTo("██");
+			}
+		}
+
+		/**
+		 * DOCME add JavaDoc for BooleanMatrixFormatterTest.FormatTests
+		 *
+		 * @author André Schulz
+		 *
+		 * @since 0.1.0
+		 */
+		@Nested
+		class ErrorHandlingTest extends TestBase {
+
+			/**
+			 * @since 0.1.0
+			 */
+			@Test
+			void test_IAE_rowNull() throws Exception {
+				logTestStart();
+
+				assertThatThrownBy(() -> format(new boolean[][] { null })).isInstanceOf(IllegalArgumentException.class)
+						.hasMessageContaining("null");
+			}
+
+			/**
+			 * @since 0.1.0
+			 */
+			@Test
+			void test_IAE_rowsEmpty() throws Exception {
+				logTestStart();
+
+				assertThatThrownBy(() -> format(new boolean[][] { {}, {} }))
+						.isInstanceOf(IllegalArgumentException.class).hasMessageContaining("empty");
+			}
+
+			/**
+			 * @since 0.1.0
+			 */
+			@Test
+			void test_IAE_rowsHaveDifferentLengths() throws Exception {
+				logTestStart();
+
+				assertThatThrownBy(() -> format(new boolean[][] { { true }, { true, false } }))
+						.isInstanceOf(IllegalArgumentException.class).hasMessageContaining("regular");
+			}
+
+			/**
+			 * @since 0.1.0
+			 */
+			@Test
+			void test_NPE_null() throws Exception {
+				logTestStart();
+
+				assertThatThrownBy(() -> format(null)).isInstanceOf(NullPointerException.class)
+						.hasMessageContaining("matrix");
 			}
 		}
 

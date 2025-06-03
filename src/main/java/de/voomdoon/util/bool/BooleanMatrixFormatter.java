@@ -288,8 +288,19 @@ public class BooleanMatrixFormatter {
 		}
 
 		StringBuilder sb = new StringBuilder();
+		int rowLength = -1;
 
 		for (int iRow = 0; iRow < matrix.length; iRow++) {
+			if (matrix[iRow] == null) {
+				throw new IllegalArgumentException("Matrix must not contain null rows!");
+			} else if (matrix[iRow].length == 0) {
+				throw new IllegalArgumentException("Matrix must not contain empty rows!");
+			} else if (rowLength > -1 && matrix[iRow].length != rowLength) {
+				throw new IllegalArgumentException("Matrix is not regular: All rows must have the same length!");
+			}
+
+			rowLength = matrix[iRow].length;
+
 			if (iRow > 0) {
 				sb.append("\n");
 			}
