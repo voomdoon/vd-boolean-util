@@ -25,12 +25,22 @@ public class BooleanMatrixFormatter {
 		/**
 		 * @since 0.1.0
 		 */
-		private String columnSeparator = ",";
+		public static final String DEFAULT_COLUMN_SEPARATOR = ",";
 
 		/**
 		 * @since 0.1.0
 		 */
-		private Format format = Format.TRUE_AND_FALSE_WITH_SEPARATOR;
+		public static final Format DEFAULT_FORMAT = Format.TRUE_AND_FALSE_WITH_SEPARATOR;
+
+		/**
+		 * @since 0.1.0
+		 */
+		private String columnSeparator = DEFAULT_COLUMN_SEPARATOR;
+
+		/**
+		 * @since 0.1.0
+		 */
+		private Format format = DEFAULT_FORMAT;
 
 		/**
 		 * DOCME add JavaDoc for method build
