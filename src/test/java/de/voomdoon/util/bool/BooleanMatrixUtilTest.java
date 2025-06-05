@@ -146,4 +146,73 @@ public class BooleanMatrixUtilTest {
 			assertThat(actual).isEqualTo(1);
 		}
 	}
+
+	/**
+	 * DOCME add JavaDoc for BooleanMatrixUtilTest
+	 *
+	 * @author André Schulz
+	 *
+	 * @since 0.1.0
+	 */
+	@Nested
+	class IsAllFalseTest extends TestBase {
+
+		/**
+		 * @since 0.1.0
+		 */
+		@Test
+		void test_containsTrueAtFirstRow_resultFalse() throws Exception {
+			logTestStart();
+
+			boolean actual = BooleanMatrixUtil.isAllFalse(new boolean[][] { { true } });
+
+			assertThat(actual).isFalse();
+		}
+
+		/**
+		 * @since 0.1.0
+		 */
+		@Test
+		void test_containsTrueAtSecondRow_resultFalse() throws Exception {
+			logTestStart();
+
+			boolean actual = BooleanMatrixUtil.isAllFalse(new boolean[][] { {}, { true } });
+
+			assertThat(actual).isFalse();
+		}
+
+		/**
+		 * @since 0.1.0
+		 */
+		@Test
+		void test_empty_resultTrue() throws Exception {
+			logTestStart();
+
+			boolean actual = BooleanMatrixUtil.isAllFalse(new boolean[][] {});
+
+			assertThat(actual).isTrue();
+		}
+
+		/**
+		 * @since 0.1.0
+		 */
+		@Test
+		void test_error_NPE_columnNull() throws Exception {
+			logTestStart();
+
+			assertThatThrownBy(() -> BooleanMatrixUtil.isAllFalse(new boolean[][] { null }))
+					.isInstanceOf(NullPointerException.class).hasMessageContaining("row").hasMessageContaining("0");
+		}
+
+		/**
+		 * @since 0.1.0
+		 */
+		@Test
+		void test_error_NPE_matrixNull() throws Exception {
+			logTestStart();
+
+			assertThatThrownBy(() -> BooleanMatrixUtil.isAllFalse(null)).isInstanceOf(NullPointerException.class)
+					.hasMessageContaining("matrix");
+		}
+	}
 }

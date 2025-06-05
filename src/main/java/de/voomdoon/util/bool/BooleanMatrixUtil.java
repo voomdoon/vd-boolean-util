@@ -36,6 +36,29 @@ public final class BooleanMatrixUtil {
 	}
 
 	/**
+	 * DOCME add JavaDoc for method isAllFalse
+	 * 
+	 * @param matrix
+	 * @return
+	 * @since 0.1.0
+	 */
+	public static boolean isAllFalse(boolean[][] matrix) {
+		Objects.requireNonNull(matrix, "matrix");
+
+		for (int iRow = 0; iRow < matrix.length; iRow++) {
+			Objects.requireNonNull(matrix[iRow], "row at index " + iRow);
+
+			for (int iColumn = 0; iColumn < matrix[iRow].length; iColumn++) {
+				if (matrix[iRow][iColumn]) {
+					return false;
+				}
+			}
+		}
+
+		return true;
+	}
+
+	/**
 	 * @since 0.1.0
 	 */
 	private BooleanMatrixUtil() {
