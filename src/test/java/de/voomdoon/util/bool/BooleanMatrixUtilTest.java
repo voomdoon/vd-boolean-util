@@ -1,6 +1,7 @@
 package de.voomdoon.util.bool;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -109,6 +110,28 @@ public class BooleanMatrixUtilTest {
 			int actual = BooleanMatrixUtil.countTrue(new boolean[0][0]);
 
 			assertThat(actual).isZero();
+		}
+
+		/**
+		 * @since 0.1.0
+		 */
+		@Test
+		void test_error_NPE_columnNull() throws Exception {
+			logTestStart();
+
+			assertThatThrownBy(() -> BooleanMatrixUtil.countTrue(new boolean[][] { null }))
+					.isInstanceOf(NullPointerException.class).hasMessageContaining("row").hasMessageContaining("0");
+		}
+
+		/**
+		 * @since 0.1.0
+		 */
+		@Test
+		void test_error_NPE_matrixNull() throws Exception {
+			logTestStart();
+
+			assertThatThrownBy(() -> BooleanMatrixUtil.countTrue(null)).isInstanceOf(NullPointerException.class)
+					.hasMessageContaining("matrix");
 		}
 
 		/**
