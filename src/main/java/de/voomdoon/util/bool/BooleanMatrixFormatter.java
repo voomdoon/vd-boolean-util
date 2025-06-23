@@ -329,7 +329,7 @@ public class BooleanMatrixFormatter {
 		return switch (format) {
 			case TRUE_AND_FALSE_WITH_SEPARATOR -> Boolean.toString(b);
 			case ONE_AND_ZERO -> b ? "1" : "0";
-			case DOUBLE_WIDTH_BLOCKS -> b ? "██" : "  ";
+			case DOUBLE_WIDTH_BLOCKS -> b ? "██" : "  ";// FEATURE #8 make configurable
 			default -> throw new UnsupportedOperationException("Format '" + format + "' not supported!");
 		};
 	}
