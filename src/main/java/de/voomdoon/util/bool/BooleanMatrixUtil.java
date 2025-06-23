@@ -90,12 +90,10 @@ public final class BooleanMatrixUtil {
 			boolean[][] result = new boolean[iRowMax - iRowMin + 1][];
 			int iResult = 0;
 
-			for (int iRow = 0; iRow < matrix.length; iRow++) {
-				if (iRowMin <= iRow && iRow <= iRowMax) {
-					boolean[] resultRow = new boolean[iColumnMax - iColumnMin + 1];
-					System.arraycopy(matrix[iRow], iColumnMin, resultRow, 0, resultRow.length);
-					result[iResult++] = resultRow;
-				}
+			for (int iRow = iRowMin; iRow <= iRowMax; iRow++) {
+				boolean[] resultRow = new boolean[iColumnMax - iColumnMin + 1];
+				System.arraycopy(matrix[iRow], iColumnMin, resultRow, 0, resultRow.length);
+				result[iResult++] = resultRow;
 			}
 
 			return result;
