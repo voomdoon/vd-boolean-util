@@ -175,6 +175,6 @@ public final class BooleanMatrixUtil {
 	 * @since 0.1.0
 	 */
 	private BooleanMatrixUtil() {
-		// nothing to do
+		// utility class
 	}
 }

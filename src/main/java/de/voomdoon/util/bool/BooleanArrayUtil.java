@@ -32,6 +32,6 @@ public class BooleanArrayUtil {
 	 * @since 0.1.0
 	 */
 	private BooleanArrayUtil() {
-		// nothing to do
+		// utility class
 	}
 }
