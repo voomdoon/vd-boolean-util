@@ -40,6 +40,11 @@ public class BooleanMatrixFormatter {
 		/**
 		 * @since 0.1.0
 		 */
+		private String doubleWidthBlocksFalseValue = "  ";
+
+		/**
+		 * @since 0.1.0
+		 */
 		private Format format = DEFAULT_FORMAT;
 
 		/**
@@ -50,7 +55,7 @@ public class BooleanMatrixFormatter {
 		 * @since 0.1.0
 		 */
 		public BooleanMatrixFormatter build() {
-			return new BooleanMatrixFormatter(format, columnSeparator);
+			return new BooleanMatrixFormatter(format, columnSeparator, doubleWidthBlocksFalseValue);
 		}
 
 		/**
@@ -67,6 +72,21 @@ public class BooleanMatrixFormatter {
 		}
 
 		/**
+		 * DOCME add JavaDoc for method withDoubleWithBlocksFalseValue
+		 * 
+		 * @param falseValue
+		 * @return
+		 * @since 0.1.0
+		 */
+		public BooleanMatrixFormatterBuilder withDoubleWidthBlocksFalseValue(String falseValue) {
+			validateFalseValue(falseValue);
+
+			doubleWidthBlocksFalseValue = falseValue;
+
+			return this;
+		}
+
+		/**
 		 * DOCME add JavaDoc for method withFormat
 		 * 
 		 * @param format
@@ -77,6 +97,25 @@ public class BooleanMatrixFormatter {
 			this.format = Objects.requireNonNull(format, "format");
 
 			return this;
+		}
+
+		/**
+		 * DOCME add JavaDoc for method validateFalseValue
+		 * 
+		 * @param falseValue
+		 * @since 0.1.0
+		 */
+		private void validateFalseValue(String falseValue) {
+			if (format != Format.DOUBLE_WIDTH_BLOCKS) {
+				throw new IllegalStateException("Must set Format.DOUBLE_WIDTH_BLOCKS first!");
+			}
+
+			Objects.requireNonNull(falseValue, "falseValue");
+
+			if (falseValue.length() != 2) {
+				throw new IllegalArgumentException(
+						"Cannot use value '" + falseValue + "' for false: Must have length 2!");
+			}
 		}
 	}
 
@@ -256,6 +295,7 @@ public class BooleanMatrixFormatter {
 	}
 
 	private String columnSeparator;
+	private String doubleWidthBlocksFalseValue;
 	/**
 	 * @since 0.1.0
 	 */
@@ -266,11 +306,13 @@ public class BooleanMatrixFormatter {
 	 * 
 	 * @param format
 	 * @param columnSeparator
+	 * @param doubleWidthBlocksFalseValue
 	 * @since 0.1.0
 	 */
-	private BooleanMatrixFormatter(Format format, String columnSeparator) {
+	private BooleanMatrixFormatter(Format format, String columnSeparator, String doubleWidthBlocksFalseValue) {
 		this.format = format;
 		this.columnSeparator = columnSeparator;
+		this.doubleWidthBlocksFalseValue = doubleWidthBlocksFalseValue;
 	}
 
 	/**
@@ -329,7 +371,7 @@ public class BooleanMatrixFormatter {
 		return switch (format) {
 			case TRUE_AND_FALSE_WITH_SEPARATOR -> Boolean.toString(b);
 			case ONE_AND_ZERO -> b ? "1" : "0";
-			case DOUBLE_WIDTH_BLOCKS -> b ? "██" : "  ";// FEATURE #8 make configurable
+			case DOUBLE_WIDTH_BLOCKS -> b ? "██" : doubleWidthBlocksFalseValue;
 			default -> throw new UnsupportedOperationException("Format '" + format + "' not supported!");
 		};
 	}

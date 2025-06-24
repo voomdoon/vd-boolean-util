@@ -4,9 +4,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
+import java.util.stream.Stream;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import de.voomdoon.util.bool.BooleanMatrixFormatter.BooleanMatrixFormatterBuilder;
 import de.voomdoon.util.bool.BooleanMatrixFormatter.Format;
@@ -123,6 +128,108 @@ class BooleanMatrixFormatterTest {
 				BooleanMatrixFormatterBuilder builder = BooleanMatrixFormatter.builder();
 
 				BooleanMatrixFormatterBuilder actual = builder.withColumnSeparator(" ");
+
+				assertThat(actual).isSameAs(builder);
+			}
+		}
+
+		/**
+		 * DOCME add JavaDoc for BooleanMatrixFormatterTest.BuilderTest
+		 *
+		 * @author André Schulz
+		 *
+		 * @since 0.1.0
+		 */
+		@Nested
+		class WithDoubleWidthBlocksFalseValueTest extends de.voomdoon.testing.tests.TestBase {
+
+			/**
+			 * @return
+			 * @since 0.1.0
+			 */
+			private static Stream<Arguments> getInvalidLengthValues() {
+				return Stream.of(//
+						Arguments.of((Object) ""), //
+						Arguments.of((Object) "-"), //
+						Arguments.of((Object) "---"));
+			}
+
+			/**
+			 * @since 0.1.0
+			 */
+			@ParameterizedTest
+			@MethodSource(value = "getInvalidLengthValues")
+			void test_error_IAE_invalidLength(String falseValue) throws Exception {
+				logTestStart();
+
+				BooleanMatrixFormatterBuilder builder = BooleanMatrixFormatter.builder();
+				builder.withFormat(Format.DOUBLE_WIDTH_BLOCKS);
+
+				assertThatThrownBy(() -> builder.withDoubleWidthBlocksFalseValue(falseValue))
+						.isInstanceOf(IllegalArgumentException.class)//
+						.hasMessageContaining("length")//
+						.hasMessageContaining(falseValue);
+			}
+
+			/**
+			 * @since 0.1.0
+			 */
+			@Test
+			void test_error_IAE_null() throws Exception {
+				logTestStart();
+
+				BooleanMatrixFormatterBuilder builder = BooleanMatrixFormatter.builder();
+				builder.withFormat(Format.DOUBLE_WIDTH_BLOCKS);
+
+				assertThatThrownBy(() -> builder.withDoubleWidthBlocksFalseValue(null))
+						.isInstanceOf(NullPointerException.class)//
+						.hasMessageContaining("falseValue");
+			}
+
+			/**
+			 * @since 0.1.0
+			 */
+			@Test
+			void test_error_IllegalStateException_canOnlyBeUsedWithDoubleWidthBlocksFormat() throws Exception {
+				logTestStart();
+
+				BooleanMatrixFormatterBuilder builder = BooleanMatrixFormatter.builder();
+				builder.withFormat(Format.ONE_AND_ZERO);
+
+				assertThatThrownBy(() -> builder.withDoubleWidthBlocksFalseValue("--"))
+						.isInstanceOf(IllegalStateException.class)//
+						.extracting(Throwable::getMessage).asString().containsIgnoringCase("format");
+			}
+
+			/**
+			 * DOCME add JavaDoc for method test
+			 * 
+			 * @since 0.1.0
+			 */
+			@Test
+			void test_isRespected() throws Exception {
+				logTestStart();
+
+				BooleanMatrixFormatterBuilder builder = BooleanMatrixFormatter.builder();
+				builder.withFormat(Format.DOUBLE_WIDTH_BLOCKS);
+				builder.withDoubleWidthBlocksFalseValue("--");
+
+				String actual = builder.build().format(new boolean[][] { { true, false, true } });
+
+				assertThat(actual).isEqualTo("██--██");
+			}
+
+			/**
+			 * @since 0.1.0
+			 */
+			@Test
+			void test_result_sameInstance() throws Exception {
+				logTestStart();
+
+				BooleanMatrixFormatterBuilder builder = BooleanMatrixFormatter.builder();
+				builder.withFormat(Format.DOUBLE_WIDTH_BLOCKS);
+
+				BooleanMatrixFormatterBuilder actual = builder.withDoubleWidthBlocksFalseValue("--");
 
 				assertThat(actual).isSameAs(builder);
 			}
