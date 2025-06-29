@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * DOCME add JavaDoc for
+ * Parser for boolean matrices from various string formats.
  *
  * @author André Schulz
  *
@@ -18,10 +18,11 @@ public class BooleanMatrixParser {
 	private boolean useHalfLineBlocks;
 
 	/**
-	 * DOCME add JavaDoc for method parseMatrix
+	 * Parses a boolean matrix from a {@link String} representation.
 	 * 
 	 * @param string
-	 * @return
+	 *            {@link String}
+	 * @return boolean matrix
 	 * @since 0.1.0
 	 */
 	public boolean[][] parseMatrix(String string) {
@@ -52,8 +53,6 @@ public class BooleanMatrixParser {
 	}
 
 	/**
-	 * DOCME add JavaDoc for method parseDigits
-	 * 
 	 * @param string
 	 * @return
 	 * @since 0.1.0
@@ -92,8 +91,6 @@ public class BooleanMatrixParser {
 	}
 
 	/**
-	 * DOCME add JavaDoc for method parseMatrixFromFullLineBlocks
-	 * 
 	 * @param string
 	 * @return
 	 * @since 0.1.0
@@ -128,8 +125,6 @@ public class BooleanMatrixParser {
 	}
 
 	/**
-	 * DOCME add JavaDoc for method parseMatrixFromHalfLineBlocks
-	 * 
 	 * @param string
 	 * @return
 	 * @since 0.1.0
@@ -166,8 +161,6 @@ public class BooleanMatrixParser {
 	}
 
 	/**
-	 * DOCME add JavaDoc for method parseLiterals
-	 * 
 	 * @param string
 	 * @return
 	 * @since 0.1.0

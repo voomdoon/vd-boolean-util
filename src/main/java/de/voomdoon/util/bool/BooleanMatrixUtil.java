@@ -3,7 +3,7 @@ package de.voomdoon.util.bool;
 import java.util.Objects;
 
 /**
- * DOCME add JavaDoc for
+ * Utility class for boolean matrices.
  *
  * @author André Schulz
  *
@@ -12,8 +12,6 @@ import java.util.Objects;
 public final class BooleanMatrixUtil {
 
 	/**
-	 * DOCME add JavaDoc for BooleanMatrixUtil
-	 *
 	 * @author André Schulz
 	 *
 	 * @since 0.1.0
@@ -46,9 +44,8 @@ public final class BooleanMatrixUtil {
 		private boolean[][] matrix;
 
 		/**
-		 * DOCME add JavaDoc for constructor BooleanMatrixTrimmer
-		 * 
 		 * @param matrix
+		 *            boolean matrix
 		 * @since 0.1.0
 		 */
 		public BooleanMatrixTrimmer(boolean[][] matrix) {
@@ -77,8 +74,6 @@ public final class BooleanMatrixUtil {
 		}
 
 		/**
-		 * DOCME add JavaDoc for method realTrim
-		 * 
 		 * @return
 		 * @since 0.1.0
 		 */
@@ -100,8 +95,6 @@ public final class BooleanMatrixUtil {
 		}
 
 		/**
-		 * DOCME add JavaDoc for method trim
-		 * 
 		 * @param matrix
 		 * @return
 		 * @since 0.1.0
@@ -114,10 +107,11 @@ public final class BooleanMatrixUtil {
 	}
 
 	/**
-	 * DOCME add JavaDoc for method countTrue
+	 * Counts the number of {@code true} values in a boolean matrix.
 	 * 
 	 * @param matrix
-	 * @return
+	 *            boolean matrix
+	 * @return the number of {@code true} values
 	 * @since 0.1.0
 	 */
 	public static int countTrue(boolean[][] matrix) {
@@ -138,10 +132,11 @@ public final class BooleanMatrixUtil {
 	}
 
 	/**
-	 * DOCME add JavaDoc for method getTrimmed
+	 * Returns a new boolean matrix which is trimmed of all rows and columns that contain no {@code true} values.
 	 * 
 	 * @param matrix
-	 * @return
+	 *            boolean matrix
+	 * @return trimmed boolean matrix
 	 * @since 0.1.0
 	 */
 	public static boolean[][] getTrimmed(boolean[][] matrix) {
@@ -149,10 +144,11 @@ public final class BooleanMatrixUtil {
 	}
 
 	/**
-	 * DOCME add JavaDoc for method isAllFalse
+	 * Returns {@code true} if all values in the given boolean matrix are {@code false}.
 	 * 
 	 * @param matrix
-	 * @return
+	 *            boolean matrix
+	 * @return {@code true} if all values are {@code false}, {@code false} otherwise
 	 * @since 0.1.0
 	 */
 	public static boolean isAllFalse(boolean[][] matrix) {

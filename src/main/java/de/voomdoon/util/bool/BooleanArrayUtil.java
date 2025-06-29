@@ -1,7 +1,7 @@
 package de.voomdoon.util.bool;
 
 /**
- * DOCME add JavaDoc for
+ * Utility class for boolean arrays.
  *
  * @author André Schulz
  *
@@ -10,10 +10,11 @@ package de.voomdoon.util.bool;
 public class BooleanArrayUtil {
 
 	/**
-	 * DOCME add JavaDoc for method countTrue
+	 * Counts the number of {@code true} values in a boolean array.
 	 * 
 	 * @param array
-	 * @return
+	 *            boolean array
+	 * @return the number of {@code true} values
 	 * @since 0.1.0
 	 */
 	public static int countTrue(boolean[] array) {

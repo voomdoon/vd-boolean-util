@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * DOCME add JavaDoc for
+ * Formats a boolean matrix into a {@link String} representation.
  *
  * @author André Schulz
  *
@@ -14,7 +14,7 @@ import java.util.Objects;
 public class BooleanMatrixFormatter {
 
 	/**
-	 * DOCME add JavaDoc for BooleanMatrixFormatter
+	 * Tests for {@link BooleanMatrixFormatter#builder()}.
 	 *
 	 * @author André Schulz
 	 *
@@ -48,9 +48,9 @@ public class BooleanMatrixFormatter {
 		private Format format = DEFAULT_FORMAT;
 
 		/**
-		 * DOCME add JavaDoc for method build
+		 * Builds a new {@link BooleanMatrixFormatter} instance.
 		 * 
-		 * @return
+		 * @return {@link BooleanMatrixFormatter}
 		 * 
 		 * @since 0.1.0
 		 */
@@ -59,10 +59,9 @@ public class BooleanMatrixFormatter {
 		}
 
 		/**
-		 * DOCME add JavaDoc for method withColumnSeparator
-		 * 
 		 * @param separator
-		 * @return
+		 *            column separator {@link String}
+		 * @return this {@link BooleanMatrixFormatterBuilder}
 		 * @since 0.1.0
 		 */
 		public BooleanMatrixFormatterBuilder withColumnSeparator(String separator) {
@@ -72,14 +71,15 @@ public class BooleanMatrixFormatter {
 		}
 
 		/**
-		 * DOCME add JavaDoc for method withDoubleWithBlocksFalseValue
+		 * Sets the value to use for the false value for {@link Format#DOUBLE_WIDTH_BLOCKS}.
 		 * 
 		 * @param falseValue
-		 * @return
+		 *            {@link String}
+		 * @return this {@link BooleanMatrixFormatterBuilder}
 		 * @since 0.1.0
 		 */
 		public BooleanMatrixFormatterBuilder withDoubleWidthBlocksFalseValue(String falseValue) {
-			validateFalseValue(falseValue);
+			validateDoubleWidthBlocksFalseValue(falseValue);
 
 			doubleWidthBlocksFalseValue = falseValue;
 
@@ -87,10 +87,10 @@ public class BooleanMatrixFormatter {
 		}
 
 		/**
-		 * DOCME add JavaDoc for method withFormat
 		 * 
 		 * @param format
-		 * @return
+		 *            {@link Format}
+		 * @return this {@link BooleanMatrixFormatterBuilder}
 		 * @since 0.1.0
 		 */
 		public BooleanMatrixFormatterBuilder withFormat(Format format) {
@@ -100,12 +100,11 @@ public class BooleanMatrixFormatter {
 		}
 
 		/**
-		 * DOCME add JavaDoc for method validateFalseValue
-		 * 
 		 * @param falseValue
+		 *            {@link String}
 		 * @since 0.1.0
 		 */
-		private void validateFalseValue(String falseValue) {
+		private void validateDoubleWidthBlocksFalseValue(String falseValue) {
 			if (format != Format.DOUBLE_WIDTH_BLOCKS) {
 				throw new IllegalStateException("Must set Format.DOUBLE_WIDTH_BLOCKS first!");
 			}
@@ -120,7 +119,7 @@ public class BooleanMatrixFormatter {
 	}
 
 	/**
-	 * DOCME add JavaDoc for BooleanMatrixFormatter
+	 * Formats of the {@link BooleanMatrixFormatter}.
 	 *
 	 * @author André Schulz
 	 *
@@ -152,8 +151,6 @@ public class BooleanMatrixFormatter {
 	}
 
 	/**
-	 * DOCME add JavaDoc for BooleanMatrixFormatter
-	 *
 	 * @author André Schulz
 	 *
 	 * @since 0.1.0
@@ -181,8 +178,6 @@ public class BooleanMatrixFormatter {
 		private static final String TOP = "▀";
 
 		/**
-		 * DOCME add JavaDoc for method addFirstPassElement
-		 * 
 		 * @param row
 		 * @param outputRow
 		 * @param iColumn
@@ -210,8 +205,6 @@ public class BooleanMatrixFormatter {
 		}
 
 		/**
-		 * DOCME add JavaDoc for method apply
-		 * 
 		 * @param row
 		 * @param outputRow
 		 * @param pass
@@ -228,8 +221,6 @@ public class BooleanMatrixFormatter {
 		}
 
 		/**
-		 * DOCME add JavaDoc for method formatHalfLineBlocks
-		 * 
 		 * @param matrix
 		 * @return
 		 * @since 0.1.0
@@ -260,9 +251,6 @@ public class BooleanMatrixFormatter {
 		}
 
 		/**
-		 * 
-		 * DOCME add JavaDoc for method updateSecondPassElement
-		 * 
 		 * @param row
 		 * @param outputRow
 		 * @param iColumn
@@ -285,28 +273,37 @@ public class BooleanMatrixFormatter {
 	private static final HalfLineBlocksFormatter HALF_LINE_BLOCKS_FORMATTER = new HalfLineBlocksFormatter();
 
 	/**
-	 * DOCME add JavaDoc for method builder
+	 * Returns a new {@link BooleanMatrixFormatterBuilder} instance to build a {@link BooleanMatrixFormatter}.
 	 * 
-	 * @return
+	 * @return {@link BooleanMatrixFormatterBuilder}
 	 * @since 0.1.0
 	 */
 	public static BooleanMatrixFormatterBuilder builder() {
 		return new BooleanMatrixFormatterBuilder();
 	}
 
+	/**
+	 * @since 0.1.0
+	 */
 	private String columnSeparator;
+
+	/**
+	 * @since 0.1.0
+	 */
 	private String doubleWidthBlocksFalseValue;
+
 	/**
 	 * @since 0.1.0
 	 */
 	private final Format format;
 
 	/**
-	 * DOCME add JavaDoc for constructor BooleanMatrixFormatter
-	 * 
 	 * @param format
+	 *            {@link Format}
 	 * @param columnSeparator
+	 *            {@link String} to use as column separator for
 	 * @param doubleWidthBlocksFalseValue
+	 *            {@link String} to use for false values in {@link Format#DOUBLE_WIDTH_BLOCKS}
 	 * @since 0.1.0
 	 */
 	private BooleanMatrixFormatter(Format format, String columnSeparator, String doubleWidthBlocksFalseValue) {
@@ -316,10 +313,11 @@ public class BooleanMatrixFormatter {
 	}
 
 	/**
-	 * DOCME add JavaDoc for method format
+	 * Formats the given boolean matrix into a {@link String} representation.
 	 * 
 	 * @param matrix
-	 * @return
+	 *            boolean matrix
+	 * @return {@link String}
 	 * @since 0.1.0
 	 */
 	public String format(boolean[][] matrix) {
@@ -358,7 +356,6 @@ public class BooleanMatrixFormatter {
 		}
 
 		return sb.toString();
-		// TODO implement format
 	}
 
 	/**
