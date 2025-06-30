@@ -13,7 +13,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import de.voomdoon.util.bool.matrix.BooleanMatrixFormatter;
 import de.voomdoon.util.bool.matrix.BooleanMatrixFormatter.BooleanMatrixFormatterBuilder;
 import de.voomdoon.util.bool.matrix.BooleanMatrixFormatter.Format;
 
