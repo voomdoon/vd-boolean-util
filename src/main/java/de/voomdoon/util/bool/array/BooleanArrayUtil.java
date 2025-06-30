@@ -1,4 +1,4 @@
-package de.voomdoon.util.bool;
+package de.voomdoon.util.bool.array;
 
 /**
  * Utility class for boolean arrays.

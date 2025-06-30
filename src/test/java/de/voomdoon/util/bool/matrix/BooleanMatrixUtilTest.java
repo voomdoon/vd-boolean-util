@@ -1,4 +1,4 @@
-package de.voomdoon.util.bool;
+package de.voomdoon.util.bool.matrix;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -12,7 +12,9 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import de.voomdoon.testing.tests.TestBase;
-import de.voomdoon.util.bool.BooleanMatrixFormatter.Format;
+import de.voomdoon.util.bool.matrix.BooleanMatrixFormatter;
+import de.voomdoon.util.bool.matrix.BooleanMatrixUtil;
+import de.voomdoon.util.bool.matrix.BooleanMatrixFormatter.Format;
 
 /**
  * Tests for {@link BooleanMatrixUtil}.

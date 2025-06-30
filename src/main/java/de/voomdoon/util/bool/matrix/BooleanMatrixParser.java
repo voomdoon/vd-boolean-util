@@ -1,4 +1,4 @@
-package de.voomdoon.util.bool;
+package de.voomdoon.util.bool.matrix;
 
 import java.util.ArrayList;
 import java.util.List;
