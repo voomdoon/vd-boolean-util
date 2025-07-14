@@ -45,7 +45,7 @@ public final class BooleanMatrixCalculator {
 	 * @param left
 	 * @param right
 	 * @param iRow
-	 * @since DOCME add inception version number
+	 * @since 0.1.0
 	 */
 	private static void validateEqualColumnCount(boolean[][] left, boolean[][] right, int iRow) {
 		if (left[iRow].length != right[iRow].length) {
@@ -57,7 +57,7 @@ public final class BooleanMatrixCalculator {
 	/**
 	 * @param left
 	 * @param right
-	 * @since DOCME add inception version number
+	 * @since 0.1.0
 	 */
 	private static void validateEqualRowCount(boolean[][] left, boolean[][] right) {
 		if (left.length != right.length) {
