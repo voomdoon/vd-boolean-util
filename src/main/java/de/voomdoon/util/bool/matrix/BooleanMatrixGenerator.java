@@ -4,7 +4,7 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 /**
- * DOCME add JavaDoc for
+ * Generator for boolean matrices.
  *
  * @author André Schulz
  *
@@ -13,7 +13,7 @@ import java.util.function.Supplier;
 public class BooleanMatrixGenerator {
 
 	/**
-	 * DOCME add JavaDoc for BooleanMatrixGenerator
+	 * Builder for {@link BooleanMatrixGenerator}.
 	 *
 	 * @author André Schulz
 	 *
@@ -32,7 +32,7 @@ public class BooleanMatrixGenerator {
 		private BooleanMatrixValueProvider valueProvider;
 
 		/**
-		 * DOCME add JavaDoc for constructor BooleanMatrixGeneratorBuilder
+		 * Creates a new builder for {@link BooleanMatrixGenerator}.
 		 * 
 		 * @since 0.1.0
 		 */
@@ -41,7 +41,7 @@ public class BooleanMatrixGenerator {
 		}
 
 		/**
-		 * DOCME add JavaDoc for method build
+		 * Builds the {@link BooleanMatrixGenerator} using the configured suppliers.
 		 * 
 		 * @since 0.1.0
 		 */
@@ -52,7 +52,7 @@ public class BooleanMatrixGenerator {
 		}
 
 		/**
-		 * DOCME add JavaDoc for method withSizeSupplier
+		 * Sets the supplier for the matrix size.
 		 * 
 		 * @param sizeSupplier
 		 * @return
@@ -65,7 +65,7 @@ public class BooleanMatrixGenerator {
 		}
 
 		/**
-		 * DOCME add JavaDoc for method withValueProvider
+		 * Sets the provider for generating boolean values in the matrix.
 		 * 
 		 * @param valueProvider
 		 * @return
@@ -79,7 +79,7 @@ public class BooleanMatrixGenerator {
 	}
 
 	/**
-	 * DOCME add JavaDoc for BooleanMatrixGenerator
+	 * Supplies the size of a matrix.
 	 *
 	 * @author André Schulz
 	 *
@@ -90,8 +90,7 @@ public class BooleanMatrixGenerator {
 	}
 
 	/**
-	 * 
-	 * DOCME add JavaDoc for BooleanMatrixGenerator
+	 * Provides the boolean value for the specified cell in the matrix.
 	 *
 	 * @author André Schulz
 	 *
@@ -101,7 +100,7 @@ public class BooleanMatrixGenerator {
 	public interface BooleanMatrixValueProvider {
 
 		/**
-		 * DOCME add JavaDoc for method get
+		 * Provides the boolean value for the specified cell in the matrix.
 		 * 
 		 * @param row
 		 * @param column
@@ -113,7 +112,7 @@ public class BooleanMatrixGenerator {
 	}
 
 	/**
-	 * DOCME add JavaDoc for BooleanMatrixGenerator
+	 * {@link BooleanMatrixValueProvider} with constant value.
 	 *
 	 * @author André Schulz
 	 *
@@ -127,9 +126,8 @@ public class BooleanMatrixGenerator {
 		private boolean value;
 
 		/**
-		 * DOCME add JavaDoc for constructor BooleanMatrixGenerator.ConstantValueBooleanMatrixValueProvider
-		 * 
 		 * @param value
+		 *            The constant value to return for all cells in the matrix.
 		 * @since 0.1.0
 		 */
 		public ConstantValueBooleanMatrixValueProvider(boolean value) {
@@ -146,7 +144,7 @@ public class BooleanMatrixGenerator {
 	}
 
 	/**
-	 * DOCME add JavaDoc for BooleanMatrixGenerator
+	 * {@link BooleanMatrixSizeSupplier} returning {@link BooleanMatrixSize} representing empty matrix.
 	 *
 	 * @author André Schulz
 	 *
@@ -164,7 +162,7 @@ public class BooleanMatrixGenerator {
 	}
 
 	/**
-	 * DOCME add JavaDoc for BooleanMatrixGenerator
+	 * Definition for the size of the matrix to generate.
 	 *
 	 * @author André Schulz
 	 *
@@ -173,8 +171,10 @@ public class BooleanMatrixGenerator {
 	public record BooleanMatrixSize(int rowCount, int columnCount) {
 
 		/**
-		 * DOCME add JavaDoc for constructor BooleanMatrixGenerator.BooleanMatrixSize
-		 * 
+		 * @param rowCount
+		 *            the amount of rows
+		 * @param columnCount
+		 *            the amount of columns
 		 * @since 0.1.0
 		 */
 		public BooleanMatrixSize(int rowCount, int columnCount) {
@@ -190,7 +190,9 @@ public class BooleanMatrixGenerator {
 	}
 
 	/**
-	 * DOCME add JavaDoc for method builder
+	 * Returns a new {@link BooleanMatrixGeneratorBuilder}.
+	 * 
+	 * @return {@link BooleanMatrixGeneratorBuilder}
 	 * 
 	 * @since 0.1.0
 	 */
@@ -209,21 +211,19 @@ public class BooleanMatrixGenerator {
 	private BooleanMatrixValueProvider valueProvider;
 
 	/**
-	 * DOCME add JavaDoc for constructor BooleanMatrixGenerator
-	 * 
 	 * @param sizeSupplier
 	 * @param valueProvider
 	 * @since 0.1.0
 	 */
-	public BooleanMatrixGenerator(BooleanMatrixSizeSupplier sizeSupplier, BooleanMatrixValueProvider valueProvider) {
+	private BooleanMatrixGenerator(BooleanMatrixSizeSupplier sizeSupplier, BooleanMatrixValueProvider valueProvider) {
 		this.sizeSupplier = sizeSupplier;
 		this.valueProvider = valueProvider;
 	}
 
 	/**
-	 * DOCME add JavaDoc for method generate
+	 * Generates a boolean matrix using the configured size supplier and value provider.
 	 * 
-	 * @return
+	 * @return boolean matrix
 	 * @since 0.1.0
 	 */
 	public boolean[][] generate() {

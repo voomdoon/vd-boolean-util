@@ -18,11 +18,12 @@ import org.mockito.Mockito;
 import de.voomdoon.testing.tests.TestBase;
 import de.voomdoon.util.bool.matrix.BooleanMatrixGenerator.BooleanMatrixGeneratorBuilder;
 import de.voomdoon.util.bool.matrix.BooleanMatrixGenerator.BooleanMatrixSize;
+import de.voomdoon.util.bool.matrix.BooleanMatrixGenerator.BooleanMatrixSizeSupplier;
 import de.voomdoon.util.bool.matrix.BooleanMatrixGenerator.BooleanMatrixValueProvider;
 import de.voomdoon.util.bool.matrix.BooleanMatrixGenerator.ConstantValueBooleanMatrixValueProvider;
 
 /**
- * DOCME add JavaDoc for
+ * Tests for {@link BooleanMatrixGenerator}.
  *
  * @author André Schulz
  *
@@ -31,7 +32,7 @@ import de.voomdoon.util.bool.matrix.BooleanMatrixGenerator.ConstantValueBooleanM
 class BooleanMatrixGeneratorTest {
 
 	/**
-	 * DOCME add JavaDoc for BooleanMatrixGeneratorTest
+	 * Tests for {@link BooleanMatrixSize}.
 	 *
 	 * @author André Schulz
 	 *
@@ -62,7 +63,7 @@ class BooleanMatrixGeneratorTest {
 	}
 
 	/**
-	 * DOCME add JavaDoc for BooleanMatrixGeneratorTest
+	 * Tests for {@link BooleanMatrixGeneratorBuilder}.
 	 *
 	 * @author André Schulz
 	 *
@@ -72,7 +73,7 @@ class BooleanMatrixGeneratorTest {
 	class BuilderTest {
 
 		/**
-		 * DOCME add JavaDoc for BooleanMatrixGeneratorTest.BuilderTest
+		 * Tests for {@link BooleanMatrixGeneratorBuilder#withSizeSupplier(BooleanMatrixSizeSupplier)}.
 		 *
 		 * @author André Schulz
 		 *
@@ -161,7 +162,7 @@ class BooleanMatrixGeneratorTest {
 		}
 
 		/**
-		 * DOCME add JavaDoc for BooleanMatrixGeneratorTest.BuilderTest
+		 * Tests for {@link BooleanMatrixGeneratorBuilder#withValueProvider(BooleanMatrixValueProvider)}.
 		 *
 		 * @author André Schulz
 		 *
@@ -207,7 +208,7 @@ class BooleanMatrixGeneratorTest {
 	}
 
 	/**
-	 * DOCME add JavaDoc for BooleanMatrixGeneratorTest
+	 * Tests for {@link ConstantValueBooleanMatrixValueProvider}.
 	 *
 	 * @author André Schulz
 	 *
@@ -233,7 +234,7 @@ class BooleanMatrixGeneratorTest {
 	}
 
 	/**
-	 * DOCME add JavaDoc for BooleanMatrixGeneratorTest
+	 * Tests for {@link BooleanMatrixGenerator#generate()}.
 	 *
 	 * @author André Schulz
 	 *
