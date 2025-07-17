@@ -21,7 +21,15 @@ public class BooleanMatrixGenerator {
 	 */
 	public static class BooleanMatrixGeneratorBuilder {
 
+		/**
+		 * @since 0.1.0
+		 */
 		private BooleanMatrixSizeSupplier sizeSupplier;
+
+		/**
+		 * @since 0.1.0
+		 */
+		private BooleanMatrixValueProvider valueProvider;
 
 		/**
 		 * DOCME add JavaDoc for constructor BooleanMatrixGeneratorBuilder
@@ -39,7 +47,8 @@ public class BooleanMatrixGenerator {
 		 */
 		public BooleanMatrixGenerator build() {
 			return new BooleanMatrixGenerator(
-					Optional.ofNullable(sizeSupplier).orElseGet(() -> new EmptyBooleanMatrixSizeSupplier()));
+					Optional.ofNullable(sizeSupplier).orElseGet(() -> new EmptyBooleanMatrixSizeSupplier()),
+					Optional.ofNullable(valueProvider).orElse(new ConstantValueBooleanMatrixValueProvider(false)));
 		}
 
 		/**
@@ -54,6 +63,19 @@ public class BooleanMatrixGenerator {
 
 			return this;
 		}
+
+		/**
+		 * DOCME add JavaDoc for method withValueProvider
+		 * 
+		 * @param valueProvider
+		 * @return
+		 * @since 0.1.0
+		 */
+		public BooleanMatrixGeneratorBuilder withValueProvider(BooleanMatrixValueProvider valueProvider) {
+			this.valueProvider = valueProvider;
+
+			return this;
+		}
 	}
 
 	/**
@@ -65,6 +87,62 @@ public class BooleanMatrixGenerator {
 	 */
 	public interface BooleanMatrixSizeSupplier extends Supplier<BooleanMatrixSize> {
 
+	}
+
+	/**
+	 * 
+	 * DOCME add JavaDoc for BooleanMatrixGenerator
+	 *
+	 * @author André Schulz
+	 *
+	 * @since 0.1.0
+	 */
+	@FunctionalInterface
+	public interface BooleanMatrixValueProvider {
+
+		/**
+		 * DOCME add JavaDoc for method get
+		 * 
+		 * @param row
+		 * @param column
+		 * @param size
+		 * @return
+		 * @since 0.1.0
+		 */
+		boolean get(int row, int column, BooleanMatrixSize size);
+	}
+
+	/**
+	 * DOCME add JavaDoc for BooleanMatrixGenerator
+	 *
+	 * @author André Schulz
+	 *
+	 * @since 0.1.0
+	 */
+	public static class ConstantValueBooleanMatrixValueProvider implements BooleanMatrixValueProvider {
+
+		/**
+		 * @since 0.1.0
+		 */
+		private boolean value;
+
+		/**
+		 * DOCME add JavaDoc for constructor BooleanMatrixGenerator.ConstantValueBooleanMatrixValueProvider
+		 * 
+		 * @param value
+		 * @since 0.1.0
+		 */
+		public ConstantValueBooleanMatrixValueProvider(boolean value) {
+			this.value = value;
+		}
+
+		/**
+		 * @since 0.1.0
+		 */
+		@Override
+		public boolean get(int row, int column, BooleanMatrixSize size) {
+			return value;
+		}
 	}
 
 	/**
@@ -97,7 +175,7 @@ public class BooleanMatrixGenerator {
 		/**
 		 * DOCME add JavaDoc for constructor BooleanMatrixGenerator.BooleanMatrixSize
 		 * 
-		 * @since DOCME add inception version number
+		 * @since 0.1.0
 		 */
 		public BooleanMatrixSize(int rowCount, int columnCount) {
 			if (rowCount < 0) {
@@ -126,13 +204,20 @@ public class BooleanMatrixGenerator {
 	private BooleanMatrixSizeSupplier sizeSupplier;
 
 	/**
+	 * @since 0.1.0
+	 */
+	private BooleanMatrixValueProvider valueProvider;
+
+	/**
 	 * DOCME add JavaDoc for constructor BooleanMatrixGenerator
 	 * 
 	 * @param sizeSupplier
+	 * @param valueProvider
 	 * @since 0.1.0
 	 */
-	public BooleanMatrixGenerator(BooleanMatrixSizeSupplier sizeSupplier) {
+	public BooleanMatrixGenerator(BooleanMatrixSizeSupplier sizeSupplier, BooleanMatrixValueProvider valueProvider) {
 		this.sizeSupplier = sizeSupplier;
+		this.valueProvider = valueProvider;
 	}
 
 	/**
@@ -144,7 +229,14 @@ public class BooleanMatrixGenerator {
 	public boolean[][] generate() {
 		BooleanMatrixSize size = sizeSupplier.get();
 
-		return new boolean[size.rowCount()][size.columnCount()];
-		// TODO implement generate
+		boolean[][] result = new boolean[size.rowCount()][size.columnCount()];
+
+		for (int iRow = 0; iRow < size.rowCount(); iRow++) {
+			for (int iColumn = 0; iColumn < size.columnCount(); iColumn++) {
+				result[iRow][iColumn] = valueProvider.get(iRow, iColumn, size);
+			}
+		}
+
+		return result;
 	}
 }
