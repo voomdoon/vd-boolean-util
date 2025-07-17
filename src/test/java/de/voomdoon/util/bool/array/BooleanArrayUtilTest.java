@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import de.voomdoon.testing.tests.TestBase;
-import de.voomdoon.util.bool.array.BooleanArrayUtil;
 
 /**
  * Tests for {@link BooleanArrayUtil}.
