@@ -75,8 +75,8 @@ public class BooleanMatrixParser {
 				} else if (c == '\r') {
 					// ignore
 				} else {
-					// TODO implement parseMatrix
-					throw new UnsupportedOperationException("Method 'parseMatrix' not implemented yet");
+					throw new IllegalArgumentException(
+							"Invalid character in matrix at row " + iRow + " and column " + iCol + ": '" + c + "'!");
 				}
 			}
 
@@ -150,9 +150,7 @@ public class BooleanMatrixParser {
 				} else if (c == ' ') {
 					result[iLine * 2][i] = false;
 				} else {
-					// TODO implement parseMatrixFromHalfLineBlocks
-					throw new UnsupportedOperationException(
-							"Method 'parseMatrixFromHalfLineBlocks' not implemented yet");
+					throw new IllegalArgumentException("Invalid character at line " + iLine + ": '" + c + "'!");
 				}
 			}
 		}

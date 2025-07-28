@@ -50,6 +50,17 @@ class BooleanMatrixParserTest {
 				 * @since 0.1.0
 				 */
 				@Test
+				void test_error_IAE_illegalCharacter_right() throws Exception {
+					logTestStart();
+
+					assertThatThrownBy(() -> parser.parseMatrix("1α")).isInstanceOf(IllegalArgumentException.class)
+							.hasMessageContaining("α");
+				}
+
+				/**
+				 * @since 0.1.0
+				 */
+				@Test
 				void test_resultFalse_zero() throws Exception {
 					logTestStart();
 
@@ -223,6 +234,17 @@ class BooleanMatrixParserTest {
 				@BeforeEach
 				void beforeEach_configure() {
 					parser.useHalfLineBlocks();
+				}
+
+				/**
+				 * @since 0.1.0
+				 */
+				@Test
+				void test_error_IAE_illegalCharacter_right() throws Exception {
+					logTestStart();
+
+					assertThatThrownBy(() -> parser.parseMatrix("▀α")).isInstanceOf(IllegalArgumentException.class)
+							.hasMessageContaining("α");
 				}
 
 				/**
