@@ -17,7 +17,7 @@ import de.voomdoon.util.bool.matrix.BooleanMatrixFormatter.BooleanMatrixFormatte
 import de.voomdoon.util.bool.matrix.BooleanMatrixFormatter.Format;
 
 /**
- * DOCME add JavaDoc for
+ * Tests for {@link BooleanMatrixFormatter}.
  *
  * @author André Schulz
  *
@@ -26,7 +26,7 @@ import de.voomdoon.util.bool.matrix.BooleanMatrixFormatter.Format;
 class BooleanMatrixFormatterTest {
 
 	/**
-	 * DOCME add JavaDoc for BooleanMatrixFormatterTest
+	 * Tests for {@link BooleanMatrixFormatterBuilder}.
 	 *
 	 * @author André Schulz
 	 *
@@ -36,7 +36,7 @@ class BooleanMatrixFormatterTest {
 	class BuilderTest extends de.voomdoon.testing.tests.TestBase {
 
 		/**
-		 * DOCME add JavaDoc for BooleanMatrixFormatterTest.BuilderTest
+		 * Tests for {@link BooleanMatrixFormatterBuilder#build()}.
 		 *
 		 * @author André Schulz
 		 *
@@ -46,8 +46,6 @@ class BooleanMatrixFormatterTest {
 		class BuildTest extends de.voomdoon.testing.tests.TestBase {
 
 			/**
-			 * DOCME add JavaDoc for method test_default_format
-			 * 
 			 * @since 0.1.0
 			 */
 			@Test
@@ -60,8 +58,6 @@ class BooleanMatrixFormatterTest {
 			}
 
 			/**
-			 * DOCME add JavaDoc for method test_result
-			 * 
 			 * @since 0.1.0
 			 */
 			@Test
@@ -78,7 +74,7 @@ class BooleanMatrixFormatterTest {
 		}
 
 		/**
-		 * DOCME add JavaDoc for BooleanMatrixFormatterTest.BuilderTest
+		 * Tests for {@link BooleanMatrixFormatter#withColumnSeparator(String)}.
 		 *
 		 * @author André Schulz
 		 *
@@ -101,8 +97,6 @@ class BooleanMatrixFormatterTest {
 			}
 
 			/**
-			 * DOCME add JavaDoc for method test_isRespected
-			 * 
 			 * @since 0.1.0
 			 */
 			@Test
@@ -134,7 +128,7 @@ class BooleanMatrixFormatterTest {
 		}
 
 		/**
-		 * DOCME add JavaDoc for BooleanMatrixFormatterTest.BuilderTest
+		 * Tests for {@link BooleanMatrixFormatter#withDoubleWidthBlocksFalseValue(String)}.
 		 *
 		 * @author André Schulz
 		 *
@@ -202,8 +196,6 @@ class BooleanMatrixFormatterTest {
 			}
 
 			/**
-			 * DOCME add JavaDoc for method test
-			 * 
 			 * @since 0.1.0
 			 */
 			@Test
@@ -259,8 +251,6 @@ class BooleanMatrixFormatterTest {
 			}
 
 			/**
-			 * DOCME add JavaDoc for method test_isRespected
-			 * 
 			 * @since 0.1.0
 			 */
 			@Test
@@ -336,7 +326,7 @@ class BooleanMatrixFormatterTest {
 		}
 
 		/**
-		 * DOCME add JavaDoc for BooleanMatrixFormatterTest
+		 * Tests for {@link Format#DOUBLE_WIDTH_BLOCKS}.
 		 *
 		 * @author André Schulz
 		 *
@@ -391,7 +381,7 @@ class BooleanMatrixFormatterTest {
 		}
 
 		/**
-		 * DOCME add JavaDoc for BooleanMatrixFormatterTest.FormatTests
+		 * Tests for error handling of {@link BooleanMatrixFormatter#format(boolean[][])}.
 		 *
 		 * @author André Schulz
 		 *
@@ -446,7 +436,7 @@ class BooleanMatrixFormatterTest {
 		}
 
 		/**
-		 * DOCME add JavaDoc for BooleanMatrixFormatterTest
+		 * Tests for {@link Format#HALF_BLOCKS}.
 		 *
 		 * @author André Schulz
 		 *
@@ -548,8 +538,6 @@ class BooleanMatrixFormatterTest {
 			}
 
 			/**
-			 * DOCME add JavaDoc for method test_twoRows
-			 * 
 			 * @since 0.1.0
 			 */
 			@Test
@@ -563,7 +551,7 @@ class BooleanMatrixFormatterTest {
 		}
 
 		/**
-		 * DOCME add JavaDoc for BooleanMatrixFormatterTest
+		 * Tests for {@link Format#ONE_AND_ZERO}.
 		 *
 		 * @author André Schulz
 		 *
@@ -630,7 +618,7 @@ class BooleanMatrixFormatterTest {
 		}
 
 		/**
-		 * DOCME add JavaDoc for BooleanMatrixFormatterTest
+		 * Tests for {@link Format#TRUE_AND_FALSE_WITH_SEPARATOR}.
 		 *
 		 * @author André Schulz
 		 *
@@ -703,10 +691,9 @@ class BooleanMatrixFormatterTest {
 		protected BooleanMatrixFormatterBuilder builder = BooleanMatrixFormatter.builder();
 
 		/**
-		 * DOCME add JavaDoc for method format
-		 * 
 		 * @param matrix
-		 * @return
+		 *            boolean matrix
+		 * @return {@link String}
 		 * @since 0.1.0
 		 */
 		protected String format(boolean[][] matrix) {

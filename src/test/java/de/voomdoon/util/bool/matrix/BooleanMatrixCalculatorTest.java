@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import de.voomdoon.testing.tests.TestBase;
 
 /**
- * DOCME add JavaDoc for
+ * Tests for {@link BooleanMatrixCalculator}.
  *
  * @author André Schulz
  *
@@ -18,7 +18,7 @@ import de.voomdoon.testing.tests.TestBase;
 class BooleanMatrixCalculatorTest {
 
 	/**
-	 * DOCME add JavaDoc for BooleanMatrixCalculatorTest
+	 * Tests for {@link BooleanMatrixCalculator#or(boolean[][], boolean[][])}.
 	 *
 	 * @author André Schulz
 	 *

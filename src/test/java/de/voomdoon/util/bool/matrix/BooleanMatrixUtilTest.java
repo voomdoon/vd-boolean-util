@@ -411,7 +411,7 @@ public class BooleanMatrixUtilTest {
 	}
 
 	/**
-	 * DOCME add JavaDoc for BooleanMatrixUtilTest
+	 * Tests for {@link BooleanMatrixUtil#isAllFalse(boolean[][])}.
 	 *
 	 * @author André Schulz
 	 *
