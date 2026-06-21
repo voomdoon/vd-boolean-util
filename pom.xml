@@ -15,6 +15,7 @@
 
 	<properties>
 		<junit.version>5.13.0</junit.version>
+		<mockito.agent.argLine>-javaagent:${org.mockito:mockito-core:jar}</mockito.agent.argLine>
 	</properties>
 
 	<dependencyManagement>
