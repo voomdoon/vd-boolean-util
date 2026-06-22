@@ -13,6 +13,17 @@
 	<artifactId>vd-boolean-util</artifactId>
 	<version>0.1.0-SNAPSHOT</version>
 
+	<name>vd-boolean-util</name>
+	<description>utilities for boolean arrays and boolean matrices</description>
+	<url>https://github.com/voomdoon/vd-boolean-util</url>
+
+	<scm>
+		<url>https://github.com/voomdoon/vd-boolean-util</url>
+		<connection>scm:git:https://github.com/voomdoon/vd-boolean-util.git</connection>
+		<developerConnection>scm:git:git@github.com:voomdoon/vd-boolean-util.git</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
+
 	<properties>
 		<junit.version>5.13.0</junit.version>
 		<mockito.agent.argLine>-javaagent:${org.mockito:mockito-core:jar}</mockito.agent.argLine>
