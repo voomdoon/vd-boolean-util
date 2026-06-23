@@ -1,5 +1,17 @@
 # vd-boolean-util
 
+[![License](https://img.shields.io/github/license/voomdoon/vd-boolean-util)](https://github.com/voomdoon/vd-boolean-util/blob/main/LICENSE)
+[![Java](https://img.shields.io/badge/Java-21-blue)](https://adoptium.net/)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=voomdoon_vd-boolean-util&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=voomdoon_vd-boolean-util)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=voomdoon_vd-boolean-util&metric=coverage)](https://sonarcloud.io/summary/new_code?id=voomdoon_vd-boolean-util)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=voomdoon_vd-boolean-util&metric=bugs)](https://sonarcloud.io/summary/new_code?id=voomdoon_vd-boolean-util)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=voomdoon_vd-boolean-util&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=voomdoon_vd-boolean-util)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=voomdoon_vd-boolean-util&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=voomdoon_vd-boolean-util)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=voomdoon_vd-boolean-util&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=voomdoon_vd-boolean-util)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=voomdoon_vd-boolean-util&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=voomdoon_vd-boolean-util)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=voomdoon_vd-boolean-util&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=voomdoon_vd-boolean-util)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=voomdoon_vd-boolean-util&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=voomdoon_vd-boolean-util)
+
 Utility classes for boolean arrays and boolean matrices.
 
 ## Installation
