@@ -25,7 +25,7 @@
 	</scm>
 
 	<properties>
-		<junit.version>5.13.0</junit.version>
+		<junit.version>6.1.0</junit.version>
 		<mockito.agent.argLine>-javaagent:${org.mockito:mockito-core:jar}</mockito.agent.argLine>
 	</properties>
 
