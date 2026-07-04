@@ -9,7 +9,7 @@
 
 	<groupId>de.voomdoon.util</groupId>
 	<artifactId>vd-boolean-util</artifactId>
-	<version>0.1.0</version>
+	<version>0.1.1-SNAPSHOT</version>
 
 	<name>vd-boolean-util</name>
 	<description>utilities for boolean arrays and boolean matrices</description>
@@ -19,7 +19,7 @@
 		<url>https://github.com/voomdoon/vd-boolean-util</url>
 		<connection>scm:git:https://github.com/voomdoon/vd-boolean-util.git</connection>
 		<developerConnection>scm:git:git@github.com:voomdoon/vd-boolean-util.git</developerConnection>
-		<tag>0.1.0</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<properties>
