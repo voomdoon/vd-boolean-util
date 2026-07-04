@@ -11,7 +11,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import de.voomdoon.testing.tests.TestBase;
 import de.voomdoon.util.bool.matrix.BooleanMatrixFormatter.Format;
 
 /**
@@ -31,15 +30,13 @@ public class BooleanMatrixUtilTest {
 	 * @since 0.1.0
 	 */
 	@Nested
-	class CountTrueTest extends TestBase {
+	class CountTrueTest {
 
 		/**
 		 * @since 0.1.0
 		 */
 		@Test
 		void test_containsFalseOnly_result0() throws Exception {
-			logTestStart();
-
 			int actual = BooleanMatrixUtil.countTrue(new boolean[][] { { false } });
 
 			assertThat(actual).isZero();
@@ -50,8 +47,6 @@ public class BooleanMatrixUtilTest {
 		 */
 		@Test
 		void test_containsOnetrue_result1() throws Exception {
-			logTestStart();
-
 			int actual = BooleanMatrixUtil.countTrue(new boolean[][] { { true } });
 
 			assertThat(actual).isEqualTo(1);
@@ -62,8 +57,6 @@ public class BooleanMatrixUtilTest {
 		 */
 		@Test
 		void test_containsSomeTruesINSomeColumns_result4() throws Exception {
-			logTestStart();
-
 			int actual = BooleanMatrixUtil
 					.countTrue(new boolean[][] { { false, false }, { false, true }, { true, false }, { true, true } });
 
@@ -75,8 +68,6 @@ public class BooleanMatrixUtilTest {
 		 */
 		@Test
 		void test_containsTwoTruesInAColumn_result2() throws Exception {
-			logTestStart();
-
 			int actual = BooleanMatrixUtil.countTrue(new boolean[][] { { true }, { true } });
 
 			assertThat(actual).isEqualTo(2);
@@ -87,8 +78,6 @@ public class BooleanMatrixUtilTest {
 		 */
 		@Test
 		void test_containsTwoTruesInARow_result2() throws Exception {
-			logTestStart();
-
 			int actual = BooleanMatrixUtil.countTrue(new boolean[][] { { true, true } });
 
 			assertThat(actual).isEqualTo(2);
@@ -99,8 +88,6 @@ public class BooleanMatrixUtilTest {
 		 */
 		@Test
 		void test_containsTwoTruesOnTheDiagonal_result2() throws Exception {
-			logTestStart();
-
 			int actual = BooleanMatrixUtil.countTrue(new boolean[][] { { true, false }, { false, true } });
 
 			assertThat(actual).isEqualTo(2);
@@ -111,8 +98,6 @@ public class BooleanMatrixUtilTest {
 		 */
 		@Test
 		void test_empty_result0() throws Exception {
-			logTestStart();
-
 			int actual = BooleanMatrixUtil.countTrue(new boolean[0][0]);
 
 			assertThat(actual).isZero();
@@ -123,8 +108,6 @@ public class BooleanMatrixUtilTest {
 		 */
 		@Test
 		void test_error_NPE_columnNull() throws Exception {
-			logTestStart();
-
 			assertThatThrownBy(() -> BooleanMatrixUtil.countTrue(new boolean[][] { null }))
 					.isInstanceOf(NullPointerException.class).hasMessageContaining("row").hasMessageContaining("0");
 		}
@@ -134,8 +117,6 @@ public class BooleanMatrixUtilTest {
 		 */
 		@Test
 		void test_error_NPE_matrixNull() throws Exception {
-			logTestStart();
-
 			assertThatThrownBy(() -> BooleanMatrixUtil.countTrue(null)).isInstanceOf(NullPointerException.class)
 					.hasMessageContaining("matrix");
 		}
@@ -145,8 +126,6 @@ public class BooleanMatrixUtilTest {
 		 */
 		@Test
 		void test_irregularMatrixWithTrueAtLongRow_resultAsExpected() throws Exception {
-			logTestStart();
-
 			int actual = BooleanMatrixUtil.countTrue(new boolean[][] { { false }, { false, true } });
 
 			assertThat(actual).isEqualTo(1);
@@ -161,7 +140,7 @@ public class BooleanMatrixUtilTest {
 	 * @since 0.1.0
 	 */
 	@Nested
-	class GetTrimmedTest extends TestBase {
+	class GetTrimmedTest {
 
 		/**
 		 * @since 0.1.0
@@ -258,8 +237,6 @@ public class BooleanMatrixUtilTest {
 		 */
 		@Test
 		void test_empty_resultEmptyColumn() throws Exception {
-			logTestStart();
-
 			boolean[][] actual = BooleanMatrixUtil.getTrimmed(new boolean[][] { {} });
 
 			assertThat(actual).isEmpty();
@@ -270,8 +247,6 @@ public class BooleanMatrixUtilTest {
 		 */
 		@Test
 		void test_empty_resultEmptyRows() throws Exception {
-			logTestStart();
-
 			boolean[][] actual = BooleanMatrixUtil.getTrimmed(new boolean[][] {});
 
 			assertThat(actual).isEmpty();
@@ -283,11 +258,7 @@ public class BooleanMatrixUtilTest {
 		@ParameterizedTest
 		@MethodSource(value = "getColumnsAtBeginning")
 		void test_emptyColumnsAtBeginning_areRemoved(boolean[][] matrix) throws Exception {
-			logTestStart();
-
 			boolean[][] actual = BooleanMatrixUtil.getTrimmed(matrix);
-
-			logger.debug("actual:\n" + BooleanMatrixFormatter.builder().build().format(actual));
 
 			assertThat(actual.length).isEqualTo(matrix.length);
 
@@ -302,11 +273,7 @@ public class BooleanMatrixUtilTest {
 		@ParameterizedTest
 		@MethodSource(value = "getColumnsAtEnd")
 		void test_emptyColumnsAtEnd_areRemoved(boolean[][] matrix) throws Exception {
-			logTestStart();
-
 			boolean[][] actual = BooleanMatrixUtil.getTrimmed(matrix);
-
-			logger.debug("actual:\n" + BooleanMatrixFormatter.builder().build().format(actual));
 
 			assertThat(actual.length).isEqualTo(matrix.length);
 
@@ -321,11 +288,7 @@ public class BooleanMatrixUtilTest {
 		@ParameterizedTest
 		@MethodSource(value = "getEmptyRowsAtBeginning")
 		void test_emptyRowsAtBeginning_areRemoved(boolean[][] matrix) throws Exception {
-			logTestStart();
-
 			boolean[][] actual = BooleanMatrixUtil.getTrimmed(matrix);
-
-			logger.debug("actual:\n" + BooleanMatrixFormatter.builder().build().format(actual));
 
 			assertThat(actual.length).isEqualTo(1);
 		}
@@ -336,11 +299,7 @@ public class BooleanMatrixUtilTest {
 		@ParameterizedTest
 		@MethodSource(value = "getEmptyRowsAtEnd")
 		void test_emptyRowsAtEnd_areRemoved(boolean[][] matrix) throws Exception {
-			logTestStart();
-
 			boolean[][] actual = BooleanMatrixUtil.getTrimmed(matrix);
-
-			logger.debug("actual:\n" + BooleanMatrixFormatter.builder().build().format(actual));
 
 			assertThat(actual.length).describedAs(FORMATTER.format(actual)).isEqualTo(1);
 		}
@@ -351,8 +310,6 @@ public class BooleanMatrixUtilTest {
 		@ParameterizedTest
 		@MethodSource(value = "getFalseInBetween")
 		void test_falseInBetween_resultEqual(boolean[][] matrix) throws Exception {
-			logTestStart();
-
 			boolean[][] actual = BooleanMatrixUtil.getTrimmed(matrix);
 
 			assertThat(actual).isEqualTo(matrix);
@@ -363,8 +320,6 @@ public class BooleanMatrixUtilTest {
 		 */
 		@Test
 		void test_falseOnly_resultEmpty() throws Exception {
-			logTestStart();
-
 			boolean[][] actual = BooleanMatrixUtil.getTrimmed(new boolean[][] { { false } });
 
 			assertThat(actual).isEmpty();
@@ -376,8 +331,6 @@ public class BooleanMatrixUtilTest {
 		@ParameterizedTest
 		@MethodSource(value = "getTrueMatrices")
 		void test_trueOnly_resultEqual(boolean[][] matrix) throws Exception {
-			logTestStart();
-
 			boolean[][] actual = BooleanMatrixUtil.getTrimmed(matrix);
 
 			assertThat(actual).isEqualTo(matrix);
@@ -389,8 +342,6 @@ public class BooleanMatrixUtilTest {
 		@ParameterizedTest
 		@MethodSource(value = "getTrueMatrices")
 		void test_trueOnly_resultNotSame(boolean[][] matrix) throws Exception {
-			logTestStart();
-
 			boolean[][] actual = BooleanMatrixUtil.getTrimmed(matrix);
 
 			assertThat(actual).isNotSameAs(matrix);
@@ -402,8 +353,6 @@ public class BooleanMatrixUtilTest {
 		@ParameterizedTest
 		@MethodSource(value = "getTrueMatrices")
 		void test_trueOnly_resultRowsNotSame(boolean[][] matrix) throws Exception {
-			logTestStart();
-
 			boolean[][] actual = BooleanMatrixUtil.getTrimmed(matrix);
 
 			assertThat(actual[0]).isNotSameAs(matrix[0]);
@@ -418,15 +367,13 @@ public class BooleanMatrixUtilTest {
 	 * @since 0.1.0
 	 */
 	@Nested
-	class IsAllFalseTest extends TestBase {
+	class IsAllFalseTest {
 
 		/**
 		 * @since 0.1.0
 		 */
 		@Test
 		void test_containsTrueAtFirstRow_resultFalse() throws Exception {
-			logTestStart();
-
 			boolean actual = BooleanMatrixUtil.isAllFalse(new boolean[][] { { true } });
 
 			assertThat(actual).isFalse();
@@ -437,8 +384,6 @@ public class BooleanMatrixUtilTest {
 		 */
 		@Test
 		void test_containsTrueAtSecondRow_resultFalse() throws Exception {
-			logTestStart();
-
 			boolean actual = BooleanMatrixUtil.isAllFalse(new boolean[][] { {}, { true } });
 
 			assertThat(actual).isFalse();
@@ -449,8 +394,6 @@ public class BooleanMatrixUtilTest {
 		 */
 		@Test
 		void test_empty_resultTrue() throws Exception {
-			logTestStart();
-
 			boolean actual = BooleanMatrixUtil.isAllFalse(new boolean[][] {});
 
 			assertThat(actual).isTrue();
@@ -461,8 +404,6 @@ public class BooleanMatrixUtilTest {
 		 */
 		@Test
 		void test_error_NPE_columnNull() throws Exception {
-			logTestStart();
-
 			assertThatThrownBy(() -> BooleanMatrixUtil.isAllFalse(new boolean[][] { null }))
 					.isInstanceOf(NullPointerException.class).hasMessageContaining("row").hasMessageContaining("0");
 		}
@@ -472,8 +413,6 @@ public class BooleanMatrixUtilTest {
 		 */
 		@Test
 		void test_error_NPE_matrixNull() throws Exception {
-			logTestStart();
-
 			assertThatThrownBy(() -> BooleanMatrixUtil.isAllFalse(null)).isInstanceOf(NullPointerException.class)
 					.hasMessageContaining("matrix");
 		}

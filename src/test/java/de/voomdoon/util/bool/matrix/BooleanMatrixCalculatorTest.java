@@ -6,8 +6,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import de.voomdoon.testing.tests.TestBase;
-
 /**
  * Tests for {@link BooleanMatrixCalculator}.
  *
@@ -25,15 +23,13 @@ class BooleanMatrixCalculatorTest {
 	 * @since 0.1.0
 	 */
 	@Nested
-	class OrTest extends TestBase {
+	class OrTest {
 
 		/**
 		 * @since 0.1.0
 		 */
 		@Test
 		void test_empty() {
-			logTestStart();
-
 			boolean[][] actual = BooleanMatrixCalculator.or(new boolean[0][0], new boolean[0][0]);
 
 			assertThat(actual).isEmpty();
@@ -44,8 +40,6 @@ class BooleanMatrixCalculatorTest {
 		 */
 		@Test
 		void test_error_IllegalArgumentException_columnCountOfLeftSmaller() throws Exception {
-			logTestStart();
-
 			assertThatThrownBy(() -> {
 				BooleanMatrixCalculator.or(new boolean[][] { { false } }, new boolean[][] { { false, false } });
 			}).isInstanceOf(IllegalArgumentException.class)//
@@ -57,8 +51,6 @@ class BooleanMatrixCalculatorTest {
 		 */
 		@Test
 		void test_error_IllegalArgumentException_columnCountOfRightSmaller() throws Exception {
-			logTestStart();
-
 			assertThatThrownBy(() -> {
 				BooleanMatrixCalculator.or(new boolean[][] { { false, false } }, new boolean[][] { { false } });
 			}).isInstanceOf(IllegalArgumentException.class)//
@@ -70,8 +62,6 @@ class BooleanMatrixCalculatorTest {
 		 */
 		@Test
 		void test_error_IllegalArgumentException_rowCountOfLeftSmaller() throws Exception {
-			logTestStart();
-
 			assertThatThrownBy(() -> {
 				BooleanMatrixCalculator.or(new boolean[][] { { false } }, new boolean[][] { { false }, { false } });
 			}).isInstanceOf(IllegalArgumentException.class)//
@@ -83,8 +73,6 @@ class BooleanMatrixCalculatorTest {
 		 */
 		@Test
 		void test_error_IllegalArgumentException_rowCountOfRightSmaller() throws Exception {
-			logTestStart();
-
 			assertThatThrownBy(() -> {
 				BooleanMatrixCalculator.or(new boolean[][] { { false }, { false } }, new boolean[][] { { false } });
 			}).isInstanceOf(IllegalArgumentException.class)//
@@ -96,8 +84,6 @@ class BooleanMatrixCalculatorTest {
 		 */
 		@Test
 		void test_false() throws Exception {
-			logTestStart();
-
 			boolean[][] actual = BooleanMatrixCalculator.or(new boolean[][] { { false } },
 					new boolean[][] { { false } });
 
@@ -109,8 +95,6 @@ class BooleanMatrixCalculatorTest {
 		 */
 		@Test
 		void test_true_byBoth() throws Exception {
-			logTestStart();
-
 			boolean[][] actual = BooleanMatrixCalculator.or(new boolean[][] { { true } }, new boolean[][] { { true } });
 
 			assertThat(actual).isEqualTo(new boolean[][] { { true } });
@@ -121,8 +105,6 @@ class BooleanMatrixCalculatorTest {
 		 */
 		@Test
 		void test_true_byLeft() throws Exception {
-			logTestStart();
-
 			boolean[][] actual = BooleanMatrixCalculator.or(new boolean[][] { { true } },
 					new boolean[][] { { false } });
 
@@ -134,8 +116,6 @@ class BooleanMatrixCalculatorTest {
 		 */
 		@Test
 		void test_true_byRight() throws Exception {
-			logTestStart();
-
 			boolean[][] actual = BooleanMatrixCalculator.or(new boolean[][] { { false } },
 					new boolean[][] { { true } });
 

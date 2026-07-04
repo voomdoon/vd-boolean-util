@@ -33,7 +33,7 @@ class BooleanMatrixFormatterTest {
 	 * @since 0.1.0
 	 */
 	@Nested
-	class BuilderTest extends de.voomdoon.testing.tests.TestBase {
+	class BuilderTest {
 
 		/**
 		 * Tests for {@link BooleanMatrixFormatterBuilder#build()}.
@@ -43,15 +43,13 @@ class BooleanMatrixFormatterTest {
 		 * @since 0.1.0
 		 */
 		@Nested
-		class BuildTest extends de.voomdoon.testing.tests.TestBase {
+		class BuildTest {
 
 			/**
 			 * @since 0.1.0
 			 */
 			@Test
 			void test_default() throws Exception {
-				logTestStart();
-
 				BooleanMatrixFormatter formatter = new BooleanMatrixFormatterBuilder().build();
 
 				assertDoesNotThrow(() -> formatter.format(new boolean[][] { { false, true } }));
@@ -62,8 +60,6 @@ class BooleanMatrixFormatterTest {
 			 */
 			@Test
 			void test_result() throws Exception {
-				logTestStart();
-
 				BooleanMatrixFormatter formatter = new BooleanMatrixFormatterBuilder().withFormat(Format.ONE_AND_ZERO)
 						.build();
 
@@ -81,15 +77,13 @@ class BooleanMatrixFormatterTest {
 		 * @since 0.1.0
 		 */
 		@Nested
-		class WithColumnSeparatorTest extends de.voomdoon.testing.tests.TestBase {
+		class WithColumnSeparatorTest {
 
 			/**
 			 * @since 0.1.0
 			 */
 			@Test
 			void test_error_IAE_null() throws Exception {
-				logTestStart();
-
 				BooleanMatrixFormatterBuilder builder = BooleanMatrixFormatter.builder();
 
 				assertThatThrownBy(() -> builder.withColumnSeparator(null)).isInstanceOf(NullPointerException.class)
@@ -101,8 +95,6 @@ class BooleanMatrixFormatterTest {
 			 */
 			@Test
 			void test_isRespected() throws Exception {
-				logTestStart();
-
 				BooleanMatrixFormatterBuilder builder = BooleanMatrixFormatter.builder();
 				builder = builder.withColumnSeparator("SEPARATOR");
 				BooleanMatrixFormatter formatter = builder.build();
@@ -117,8 +109,6 @@ class BooleanMatrixFormatterTest {
 			 */
 			@Test
 			void test_result_sameInstance() throws Exception {
-				logTestStart();
-
 				BooleanMatrixFormatterBuilder builder = BooleanMatrixFormatter.builder();
 
 				BooleanMatrixFormatterBuilder actual = builder.withColumnSeparator(" ");
@@ -135,7 +125,7 @@ class BooleanMatrixFormatterTest {
 		 * @since 0.1.0
 		 */
 		@Nested
-		class WithDoubleWidthBlocksFalseValueTest extends de.voomdoon.testing.tests.TestBase {
+		class WithDoubleWidthBlocksFalseValueTest {
 
 			/**
 			 * @return
@@ -154,8 +144,6 @@ class BooleanMatrixFormatterTest {
 			@ParameterizedTest
 			@MethodSource(value = "getInvalidLengthValues")
 			void test_error_IAE_invalidLength(String falseValue) throws Exception {
-				logTestStart();
-
 				BooleanMatrixFormatterBuilder builder = BooleanMatrixFormatter.builder();
 				builder.withFormat(Format.DOUBLE_WIDTH_BLOCKS);
 
@@ -170,8 +158,6 @@ class BooleanMatrixFormatterTest {
 			 */
 			@Test
 			void test_error_IAE_null() throws Exception {
-				logTestStart();
-
 				BooleanMatrixFormatterBuilder builder = BooleanMatrixFormatter.builder();
 				builder.withFormat(Format.DOUBLE_WIDTH_BLOCKS);
 
@@ -185,8 +171,6 @@ class BooleanMatrixFormatterTest {
 			 */
 			@Test
 			void test_error_IllegalStateException_canOnlyBeUsedWithDoubleWidthBlocksFormat() throws Exception {
-				logTestStart();
-
 				BooleanMatrixFormatterBuilder builder = BooleanMatrixFormatter.builder();
 				builder.withFormat(Format.ONE_AND_ZERO);
 
@@ -200,8 +184,6 @@ class BooleanMatrixFormatterTest {
 			 */
 			@Test
 			void test_isRespected() throws Exception {
-				logTestStart();
-
 				BooleanMatrixFormatterBuilder builder = BooleanMatrixFormatter.builder();
 				builder.withFormat(Format.DOUBLE_WIDTH_BLOCKS);
 				builder.withDoubleWidthBlocksFalseValue("--");
@@ -216,8 +198,6 @@ class BooleanMatrixFormatterTest {
 			 */
 			@Test
 			void test_result_sameInstance() throws Exception {
-				logTestStart();
-
 				BooleanMatrixFormatterBuilder builder = BooleanMatrixFormatter.builder();
 				builder.withFormat(Format.DOUBLE_WIDTH_BLOCKS);
 
@@ -235,15 +215,13 @@ class BooleanMatrixFormatterTest {
 		 * @since 0.1.0
 		 */
 		@Nested
-		class WithFormatTest extends de.voomdoon.testing.tests.TestBase {
+		class WithFormatTest {
 
 			/**
 			 * @since 0.1.0
 			 */
 			@Test
 			void test_error_IAE_null() throws Exception {
-				logTestStart();
-
 				BooleanMatrixFormatterBuilder builder = BooleanMatrixFormatter.builder();
 
 				assertThatThrownBy(() -> builder.withFormat(null)).isInstanceOf(NullPointerException.class)
@@ -255,8 +233,6 @@ class BooleanMatrixFormatterTest {
 			 */
 			@Test
 			void test_isRespected() throws Exception {
-				logTestStart();
-
 				BooleanMatrixFormatterBuilder builder = BooleanMatrixFormatter.builder();
 				builder = builder.withFormat(Format.ONE_AND_ZERO);
 				BooleanMatrixFormatter formatter = builder.build();
@@ -271,8 +247,6 @@ class BooleanMatrixFormatterTest {
 			 */
 			@Test
 			void test_result_sameInstance() throws Exception {
-				logTestStart();
-
 				BooleanMatrixFormatterBuilder builder = BooleanMatrixFormatter.builder();
 
 				BooleanMatrixFormatterBuilder actual = builder.withFormat(Format.ONE_AND_ZERO);
@@ -286,8 +260,6 @@ class BooleanMatrixFormatterTest {
 		 */
 		@Test
 		void test() throws Exception {
-			logTestStart();
-
 			BooleanMatrixFormatterBuilder actual = BooleanMatrixFormatter.builder();
 
 			assertThat(actual).isNotNull();
@@ -317,8 +289,6 @@ class BooleanMatrixFormatterTest {
 			 */
 			@Test
 			void test_emptyMatrix() {
-				logTestStart();
-
 				String actual = format(new boolean[0][0]);
 
 				assertThat(actual).isEmpty();
@@ -348,8 +318,6 @@ class BooleanMatrixFormatterTest {
 			 */
 			@Test
 			void test_rowSeparator() throws Exception {
-				logTestStart();
-
 				String actual = format(new boolean[][] { { true }, { true } });
 
 				assertThat(actual).isEqualTo("██\n██");
@@ -360,8 +328,6 @@ class BooleanMatrixFormatterTest {
 			 */
 			@Test
 			void test_singleValue_false() throws Exception {
-				logTestStart();
-
 				String actual = format(new boolean[][] { { false } });
 
 				assertThat(actual).isEqualTo("  ");
@@ -372,8 +338,6 @@ class BooleanMatrixFormatterTest {
 			 */
 			@Test
 			void test_singleValue_true() throws Exception {
-				logTestStart();
-
 				String actual = format(new boolean[][] { { true } });
 
 				assertThat(actual).isEqualTo("██");
@@ -395,8 +359,6 @@ class BooleanMatrixFormatterTest {
 			 */
 			@Test
 			void test_IAE_rowNull() throws Exception {
-				logTestStart();
-
 				assertThatThrownBy(() -> format(new boolean[][] { null })).isInstanceOf(IllegalArgumentException.class)
 						.hasMessageContaining("null");
 			}
@@ -406,8 +368,6 @@ class BooleanMatrixFormatterTest {
 			 */
 			@Test
 			void test_IAE_rowsEmpty() throws Exception {
-				logTestStart();
-
 				assertThatThrownBy(() -> format(new boolean[][] { {}, {} }))
 						.isInstanceOf(IllegalArgumentException.class).hasMessageContaining("empty");
 			}
@@ -417,8 +377,6 @@ class BooleanMatrixFormatterTest {
 			 */
 			@Test
 			void test_IAE_rowsHaveDifferentLengths() throws Exception {
-				logTestStart();
-
 				assertThatThrownBy(() -> format(new boolean[][] { { true }, { true, false } }))
 						.isInstanceOf(IllegalArgumentException.class).hasMessageContaining("regular");
 			}
@@ -428,8 +386,6 @@ class BooleanMatrixFormatterTest {
 			 */
 			@Test
 			void test_NPE_null() throws Exception {
-				logTestStart();
-
 				assertThatThrownBy(() -> format(null)).isInstanceOf(NullPointerException.class)
 						.hasMessageContaining("matrix");
 			}
@@ -458,8 +414,6 @@ class BooleanMatrixFormatterTest {
 			 */
 			@Test
 			void test_2Rows_falseFalse() throws Exception {
-				logTestStart();
-
 				String actual = format(new boolean[][] { { false }, { false } });
 
 				assertThat(actual).isEqualTo(" ");
@@ -470,8 +424,6 @@ class BooleanMatrixFormatterTest {
 			 */
 			@Test
 			void test_2Rows_falseTrue() throws Exception {
-				logTestStart();
-
 				String actual = format(new boolean[][] { { false }, { true } });
 
 				assertThat(actual).isEqualTo("▄");
@@ -482,8 +434,6 @@ class BooleanMatrixFormatterTest {
 			 */
 			@Test
 			void test_2Rows_trueFalse() throws Exception {
-				logTestStart();
-
 				String actual = format(new boolean[][] { { true }, { false } });
 
 				assertThat(actual).isEqualTo("▀");
@@ -494,8 +444,6 @@ class BooleanMatrixFormatterTest {
 			 */
 			@Test
 			void test_2Rows_trueTrue() throws Exception {
-				logTestStart();
-
 				String actual = format(new boolean[][] { { true }, { true } });
 
 				assertThat(actual).isEqualTo("█");
@@ -506,8 +454,6 @@ class BooleanMatrixFormatterTest {
 			 */
 			@Test
 			void test_3Rows() throws Exception {
-				logTestStart();
-
 				String actual = format(new boolean[][] { { true }, { true }, { true } });
 
 				assertThat(actual).isEqualTo("█\n▀");
@@ -518,8 +464,6 @@ class BooleanMatrixFormatterTest {
 			 */
 			@Test
 			void test_singleValue_false() throws Exception {
-				logTestStart();
-
 				String actual = format(new boolean[][] { { false } });
 
 				assertThat(actual).isEqualTo(" ");
@@ -530,8 +474,6 @@ class BooleanMatrixFormatterTest {
 			 */
 			@Test
 			void test_singleValue_true() throws Exception {
-				logTestStart();
-
 				String actual = format(new boolean[][] { { true } });
 
 				assertThat(actual).isEqualTo("▀");
@@ -542,8 +484,6 @@ class BooleanMatrixFormatterTest {
 			 */
 			@Test
 			void test_twoRows() throws Exception {
-				logTestStart();
-
 				String actual = format(new boolean[][] { { false, true, false, true }, { false, false, true, true } });
 
 				assertThat(actual).isEqualTo(" ▀▄█");
@@ -573,8 +513,6 @@ class BooleanMatrixFormatterTest {
 			 */
 			@Test
 			void test_columnSeparator_none() throws Exception {
-				logTestStart();
-
 				String actual = format(new boolean[][] { { true, true } });
 
 				assertThat(actual).isEqualTo("11");
@@ -585,8 +523,6 @@ class BooleanMatrixFormatterTest {
 			 */
 			@Test
 			void test_rowSeparator() throws Exception {
-				logTestStart();
-
 				String actual = format(new boolean[][] { { true }, { true } });
 
 				assertThat(actual).isEqualTo("1\n1");
@@ -597,8 +533,6 @@ class BooleanMatrixFormatterTest {
 			 */
 			@Test
 			void test_singleValue_false() throws Exception {
-				logTestStart();
-
 				String actual = format(new boolean[][] { { false } });
 
 				assertThat(actual).isEqualTo("0");
@@ -609,8 +543,6 @@ class BooleanMatrixFormatterTest {
 			 */
 			@Test
 			void test_singleValue_true() throws Exception {
-				logTestStart();
-
 				String actual = format(new boolean[][] { { true } });
 
 				assertThat(actual).isEqualTo("1");
@@ -632,8 +564,6 @@ class BooleanMatrixFormatterTest {
 			 */
 			@Test
 			void test_columnSeparator_default() throws Exception {
-				logTestStart();
-
 				String actual = format(new boolean[][] { { true, true } });
 
 				assertThat(actual).isEqualTo("true,true");
@@ -644,8 +574,6 @@ class BooleanMatrixFormatterTest {
 			 */
 			@Test
 			void test_rowSeparator() throws Exception {
-				logTestStart();
-
 				String actual = format(new boolean[][] { { true }, { true } });
 
 				assertThat(actual).isEqualTo("true\ntrue");
@@ -656,8 +584,6 @@ class BooleanMatrixFormatterTest {
 			 */
 			@Test
 			void test_singleValue_false() throws Exception {
-				logTestStart();
-
 				String actual = format(new boolean[][] { { false } });
 
 				assertThat(actual).isEqualTo("false");
@@ -668,8 +594,6 @@ class BooleanMatrixFormatterTest {
 			 */
 			@Test
 			void test_singleValue_true() throws Exception {
-				logTestStart();
-
 				String actual = format(new boolean[][] { { true } });
 
 				assertThat(actual).isEqualTo("true");
@@ -683,7 +607,7 @@ class BooleanMatrixFormatterTest {
 	 *
 	 * @since 0.1.0
 	 */
-	private abstract class TestBase extends de.voomdoon.testing.tests.TestBase {
+	private abstract class TestBase {
 
 		/**
 		 * @since 0.1.0

@@ -43,15 +43,13 @@
 
 	<dependencies>
 		<!-- + + + + + + + + + + test dependencies + + + + + + + + + + -->
-		<!-- + + + + + internal voomdoon test dependencies + + + + + -->
+		<!-- + + + + + external test dependencies + + + + + -->
 		<dependency>
-			<groupId>de.voomdoon.testing</groupId>
-			<artifactId>vd-test-util</artifactId>
-			<version>0.2.0-SNAPSHOT</version>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<version>3.27.7</version>
 			<scope>test</scope>
 		</dependency>
-		<!-- - - - - - internal voomdoon test dependencies - - - - - -->
-		<!-- + + + + + external test dependencies + + + + + -->
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-engine</artifactId>
