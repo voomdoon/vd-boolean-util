@@ -52,7 +52,7 @@ class BooleanMatrixParserTest {
 				 * @since 0.1.0
 				 */
 				@Test
-				void test_error_IAE_illegalCharacter_right() throws Exception {
+				void test_error_IAE_illegalCharacter_right() {
 					ThrowingCallable action = () -> parser.parseMatrix("1α");
 
 					assertThatThrownBy(action).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("α");
@@ -62,7 +62,7 @@ class BooleanMatrixParserTest {
 				 * @since 0.1.0
 				 */
 				@Test
-				void test_resultFalse_zero() throws Exception {
+				void test_resultFalse_zero() {
 					boolean[][] actual = parser.parseMatrix("0");
 
 					assertThat(actual).isEqualTo(new boolean[][] { { false } });
@@ -72,7 +72,7 @@ class BooleanMatrixParserTest {
 				 * @since 0.1.0
 				 */
 				@Test
-				void test_resultTrue_one() throws Exception {
+				void test_resultTrue_one() {
 					boolean[][] actual = parser.parseMatrix("1");
 
 					assertThat(actual).isEqualTo(new boolean[][] { { true } });
@@ -123,7 +123,7 @@ class BooleanMatrixParserTest {
 				 * @since 0.1.0
 				 */
 				@Test
-				void test_error_IAE_illegalCharacter_left() throws Exception {
+				void test_error_IAE_illegalCharacter_left() {
 					ThrowingCallable action = () -> parser.parseMatrix("██  α█");
 
 					assertThatThrownBy(action).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("α");
@@ -133,7 +133,7 @@ class BooleanMatrixParserTest {
 				 * @since 0.1.0
 				 */
 				@Test
-				void test_error_IAE_illegalCharacter_right() throws Exception {
+				void test_error_IAE_illegalCharacter_right() {
 					ThrowingCallable action = () -> parser.parseMatrix("██  █α");
 
 					assertThatThrownBy(action).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("α");
@@ -143,7 +143,7 @@ class BooleanMatrixParserTest {
 				 * @since 0.1.0
 				 */
 				@Test
-				void test_error_IAE_invalidFormat() throws Exception {
+				void test_error_IAE_invalidFormat() {
 					ThrowingCallable action = () -> parser.parseMatrix("██  █");
 
 					assertThatThrownBy(action).isInstanceOf(IllegalArgumentException.class);
@@ -153,7 +153,7 @@ class BooleanMatrixParserTest {
 				 * @since 0.1.0
 				 */
 				@Test
-				void test_resultFalse() throws Exception {
+				void test_resultFalse() {
 					boolean[][] actual = parser.parseMatrix("  ");
 
 					assertThat(actual).isEqualTo(new boolean[][] { { false } });
@@ -163,7 +163,7 @@ class BooleanMatrixParserTest {
 				 * @since 0.1.0
 				 */
 				@Test
-				void test_resultTrue() throws Exception {
+				void test_resultTrue() {
 					boolean[][] actual = parser.parseMatrix("██");
 
 					assertThat(actual).isEqualTo(new boolean[][] { { true } });
@@ -219,7 +219,7 @@ class BooleanMatrixParserTest {
 				 * @since 0.1.0
 				 */
 				@Test
-				void test_error_IAE_illegalCharacter_right() throws Exception {
+				void test_error_IAE_illegalCharacter_right() {
 					ThrowingCallable action = () -> parser.parseMatrix("▀α");
 
 					assertThatThrownBy(action).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("α");
@@ -229,7 +229,7 @@ class BooleanMatrixParserTest {
 				 * @since 0.1.0
 				 */
 				@Test
-				void test_resultFalse() throws Exception {
+				void test_resultFalse() {
 					boolean[][] actual = parser.parseMatrix(" ");
 
 					assertThat(actual).isEqualTo(new boolean[][] { { false } });
@@ -239,7 +239,7 @@ class BooleanMatrixParserTest {
 				 * @since 0.1.0
 				 */
 				@Test
-				void test_resultTrue() throws Exception {
+				void test_resultTrue() {
 					boolean[][] actual = parser.parseMatrix("▀");
 
 					assertThat(actual).isEqualTo(new boolean[][] { { true } });
@@ -249,7 +249,7 @@ class BooleanMatrixParserTest {
 				 * @since 0.1.0
 				 */
 				@Test
-				void test_resultTrue_onTwoConsecutiveRows() throws Exception {
+				void test_resultTrue_onTwoConsecutiveRows() {
 					boolean[][] actual = parser.parseMatrix("█");
 
 					assertThat(actual).isEqualTo(new boolean[][] { { true }, { true } });
@@ -312,7 +312,7 @@ class BooleanMatrixParserTest {
 				 * @since 0.1.0
 				 */
 				@Test
-				void test_resultFalse() throws Exception {
+				void test_resultFalse() {
 					boolean[][] actual = parser.parseMatrix("false");
 
 					assertThat(actual).isEqualTo(new boolean[][] { { false } });
@@ -322,7 +322,7 @@ class BooleanMatrixParserTest {
 				 * @since 0.1.0
 				 */
 				@Test
-				void test_resultTrue() throws Exception {
+				void test_resultTrue() {
 					boolean[][] actual = parser.parseMatrix("true");
 
 					assertThat(actual).isEqualTo(new boolean[][] { { true } });
@@ -364,7 +364,7 @@ class BooleanMatrixParserTest {
 		 * @since 0.1.0
 		 */
 		@Test
-		void test_empty() throws Exception {
+		void test_empty() {
 			boolean[][] actual = parser.parseMatrix("");
 
 			assertThat(actual).isEqualTo(new boolean[][] {});

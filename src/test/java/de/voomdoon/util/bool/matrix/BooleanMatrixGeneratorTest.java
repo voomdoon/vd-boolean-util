@@ -45,7 +45,7 @@ class BooleanMatrixGeneratorTest {
 		 * @since 0.1.0
 		 */
 		@Test
-		void test_erorr_IllegalArgumentException_columnCount_negative() throws Exception {
+		void test_erorr_IllegalArgumentException_columnCount_negative() {
 			ThrowingCallable action = () -> new BooleanMatrixSize(0, -1);
 
 			assertThatThrownBy(action).isInstanceOf(IllegalArgumentException.class);
@@ -55,7 +55,7 @@ class BooleanMatrixGeneratorTest {
 		 * @since 0.1.0
 		 */
 		@Test
-		void test_erorr_IllegalArgumentException_rowCount_negative() throws Exception {
+		void test_erorr_IllegalArgumentException_rowCount_negative() {
 			ThrowingCallable action = () -> new BooleanMatrixSize(-1, 0);
 
 			assertThatThrownBy(action).isInstanceOf(IllegalArgumentException.class);
@@ -86,7 +86,7 @@ class BooleanMatrixGeneratorTest {
 			 * @since 0.1.0
 			 */
 			@Test
-			void test_result() throws Exception {
+			void test_result() {
 				BooleanMatrixGeneratorBuilder builder = BooleanMatrixGenerator.builder();
 
 				BooleanMatrixGeneratorBuilder actual = builder.withSizeSupplier(() -> new BooleanMatrixSize(1, 1));
@@ -98,7 +98,7 @@ class BooleanMatrixGeneratorTest {
 			 * @since 0.1.0
 			 */
 			@Test
-			void test_supplierIsRespected() throws Exception {
+			void test_supplierIsRespected() {
 				BooleanMatrixGeneratorBuilder builder = BooleanMatrixGenerator.builder();
 				builder.withSizeSupplier(() -> new BooleanMatrixSize(1, 1));
 				BooleanMatrixGenerator generator = builder.build();
@@ -112,7 +112,7 @@ class BooleanMatrixGeneratorTest {
 			 * @since 0.1.0
 			 */
 			@Test
-			void test_supplierIsRespected_columnCount() throws Exception {
+			void test_supplierIsRespected_columnCount() {
 				BooleanMatrixGeneratorBuilder builder = BooleanMatrixGenerator.builder();
 				builder.withSizeSupplier(() -> new BooleanMatrixSize(0, 1));
 				BooleanMatrixGenerator generator = builder.build();
@@ -126,7 +126,7 @@ class BooleanMatrixGeneratorTest {
 			 * @since 0.1.0
 			 */
 			@Test
-			void test_supplierIsRespected_forEmpty() throws Exception {
+			void test_supplierIsRespected_forEmpty() {
 				BooleanMatrixGeneratorBuilder builder = BooleanMatrixGenerator.builder();
 				builder.withSizeSupplier(() -> new BooleanMatrixSize(0, 0));
 				BooleanMatrixGenerator generator = builder.build();
@@ -140,7 +140,7 @@ class BooleanMatrixGeneratorTest {
 			 * @since 0.1.0
 			 */
 			@Test
-			void test_supplierIsRespected_rowCount() throws Exception {
+			void test_supplierIsRespected_rowCount() {
 				BooleanMatrixGeneratorBuilder builder = BooleanMatrixGenerator.builder();
 				builder.withSizeSupplier(() -> new BooleanMatrixSize(1, 0));
 				BooleanMatrixGenerator generator = builder.build();
@@ -165,7 +165,7 @@ class BooleanMatrixGeneratorTest {
 			 * @since 0.1.0
 			 */
 			@Test
-			void test_result() throws Exception {
+			void test_result() {
 				BooleanMatrixGeneratorBuilder builder = BooleanMatrixGenerator.builder();
 
 				BooleanMatrixGeneratorBuilder actual = builder.withValueProvider((r, c, s) -> true);
@@ -178,7 +178,7 @@ class BooleanMatrixGeneratorTest {
 			 */
 			@ParameterizedTest
 			@ValueSource(booleans = { true, false })
-			void test_supplierIsRespected(boolean value) throws Exception {
+			void test_supplierIsRespected(boolean value) {
 				BooleanMatrixGeneratorBuilder builder = BooleanMatrixGenerator.builder();
 
 				builder.withSizeSupplier(() -> new BooleanMatrixSize(1, 1));
@@ -208,7 +208,7 @@ class BooleanMatrixGeneratorTest {
 		 */
 		@ParameterizedTest
 		@ValueSource(booleans = { true, false })
-		void testGet(boolean value) throws Exception {
+		void testGet(boolean value) {
 			ConstantValueBooleanMatrixValueProvider provider = new ConstantValueBooleanMatrixValueProvider(value);
 
 			boolean actual = provider.get(0, 0, null);
@@ -243,7 +243,7 @@ class BooleanMatrixGeneratorTest {
 		 * @since 0.1.0
 		 */
 		@Test
-		void test_valueProvider_invocations_iColumn() throws Exception {
+		void test_valueProvider_invocations_iColumn() {
 			BooleanMatrixValueProvider valueProvider = Mockito.spy(new ConstantValueBooleanMatrixValueProvider(false));
 			BooleanMatrixSize size = new BooleanMatrixSize(2, 3);
 
@@ -262,7 +262,7 @@ class BooleanMatrixGeneratorTest {
 		 * @since 0.1.0
 		 */
 		@Test
-		void test_valueProvider_invocations_iRow() throws Exception {
+		void test_valueProvider_invocations_iRow() {
 			BooleanMatrixValueProvider valueProvider = Mockito.spy(new ConstantValueBooleanMatrixValueProvider(false));
 			BooleanMatrixSize size = new BooleanMatrixSize(2, 3);
 
@@ -280,7 +280,7 @@ class BooleanMatrixGeneratorTest {
 		 * @since 0.1.0
 		 */
 		@Test
-		void test_valueProvider_invocations_size() throws Exception {
+		void test_valueProvider_invocations_size() {
 			BooleanMatrixValueProvider valueProvider = Mockito.spy(new ConstantValueBooleanMatrixValueProvider(false));
 			BooleanMatrixSize size = new BooleanMatrixSize(2, 3);
 

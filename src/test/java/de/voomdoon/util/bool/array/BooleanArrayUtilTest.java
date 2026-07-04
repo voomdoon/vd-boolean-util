@@ -28,7 +28,7 @@ class BooleanArrayUtilTest {
 		 * @since 0.1.0
 		 */
 		@Test
-		void test_empty_result0() throws Exception {
+		void test_empty_result0() {
 			boolean[] array = new boolean[] {};
 
 			int actual = BooleanArrayUtil.countTrue(array);
@@ -40,7 +40,7 @@ class BooleanArrayUtilTest {
 		 * @since 0.1.0
 		 */
 		@Test
-		void test_false_result0() throws Exception {
+		void test_false_result0() {
 			boolean[] array = new boolean[] { false };
 
 			int actual = BooleanArrayUtil.countTrue(array);
@@ -52,7 +52,7 @@ class BooleanArrayUtilTest {
 		 * @since 0.1.0
 		 */
 		@Test
-		void test_true1_result1() throws Exception {
+		void test_true1_result1() {
 			boolean[] array = new boolean[] { true };
 
 			int actual = BooleanArrayUtil.countTrue(array);
@@ -64,7 +64,7 @@ class BooleanArrayUtilTest {
 		 * @since 0.1.0
 		 */
 		@Test
-		void test_true2_result2() throws Exception {
+		void test_true2_result2() {
 			boolean[] array = { true, true };
 
 			int actual = BooleanArrayUtil.countTrue(array);

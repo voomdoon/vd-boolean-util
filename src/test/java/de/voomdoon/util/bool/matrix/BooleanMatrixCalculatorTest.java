@@ -41,7 +41,7 @@ class BooleanMatrixCalculatorTest {
 		 * @since 0.1.0
 		 */
 		@Test
-		void test_error_IllegalArgumentException_columnCountOfLeftSmaller() throws Exception {
+		void test_error_IllegalArgumentException_columnCountOfLeftSmaller() {
 			ThrowingCallable action = () -> BooleanMatrixCalculator.or(new boolean[][] { { false } },
 					new boolean[][] { { false, false } });
 
@@ -53,7 +53,7 @@ class BooleanMatrixCalculatorTest {
 		 * @since 0.1.0
 		 */
 		@Test
-		void test_error_IllegalArgumentException_columnCountOfRightSmaller() throws Exception {
+		void test_error_IllegalArgumentException_columnCountOfRightSmaller() {
 			ThrowingCallable action = () -> BooleanMatrixCalculator.or(new boolean[][] { { false, false } },
 					new boolean[][] { { false } });
 
@@ -65,7 +65,7 @@ class BooleanMatrixCalculatorTest {
 		 * @since 0.1.0
 		 */
 		@Test
-		void test_error_IllegalArgumentException_rowCountOfLeftSmaller() throws Exception {
+		void test_error_IllegalArgumentException_rowCountOfLeftSmaller() {
 			ThrowingCallable action = () -> BooleanMatrixCalculator.or(new boolean[][] { { false } },
 					new boolean[][] { { false }, { false } });
 
@@ -77,7 +77,7 @@ class BooleanMatrixCalculatorTest {
 		 * @since 0.1.0
 		 */
 		@Test
-		void test_error_IllegalArgumentException_rowCountOfRightSmaller() throws Exception {
+		void test_error_IllegalArgumentException_rowCountOfRightSmaller() {
 			ThrowingCallable action = () -> BooleanMatrixCalculator.or(new boolean[][] { { false }, { false } },
 					new boolean[][] { { false } });
 
@@ -89,7 +89,7 @@ class BooleanMatrixCalculatorTest {
 		 * @since 0.1.0
 		 */
 		@Test
-		void test_false() throws Exception {
+		void test_false() {
 			boolean[][] actual = BooleanMatrixCalculator.or(new boolean[][] { { false } },
 					new boolean[][] { { false } });
 
@@ -100,7 +100,7 @@ class BooleanMatrixCalculatorTest {
 		 * @since 0.1.0
 		 */
 		@Test
-		void test_true_byBoth() throws Exception {
+		void test_true_byBoth() {
 			boolean[][] actual = BooleanMatrixCalculator.or(new boolean[][] { { true } }, new boolean[][] { { true } });
 
 			assertThat(actual).isEqualTo(new boolean[][] { { true } });
@@ -110,7 +110,7 @@ class BooleanMatrixCalculatorTest {
 		 * @since 0.1.0
 		 */
 		@Test
-		void test_true_byLeft() throws Exception {
+		void test_true_byLeft() {
 			boolean[][] actual = BooleanMatrixCalculator.or(new boolean[][] { { true } },
 					new boolean[][] { { false } });
 
@@ -121,7 +121,7 @@ class BooleanMatrixCalculatorTest {
 		 * @since 0.1.0
 		 */
 		@Test
-		void test_true_byRight() throws Exception {
+		void test_true_byRight() {
 			boolean[][] actual = BooleanMatrixCalculator.or(new boolean[][] { { false } },
 					new boolean[][] { { true } });
 
