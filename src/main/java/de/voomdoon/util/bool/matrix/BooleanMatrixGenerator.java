@@ -47,7 +47,7 @@ public class BooleanMatrixGenerator {
 		 */
 		public BooleanMatrixGenerator build() {
 			return new BooleanMatrixGenerator(
-					Optional.ofNullable(sizeSupplier).orElseGet(() -> new EmptyBooleanMatrixSizeSupplier()),
+					Optional.ofNullable(sizeSupplier).orElseGet(EmptyBooleanMatrixSizeSupplier::new),
 					Optional.ofNullable(valueProvider).orElse(new ConstantValueBooleanMatrixValueProvider(false)));
 		}
 
@@ -177,15 +177,12 @@ public class BooleanMatrixGenerator {
 		 *            the amount of columns
 		 * @since 0.1.0
 		 */
-		public BooleanMatrixSize(int rowCount, int columnCount) {
+		public BooleanMatrixSize {
 			if (rowCount < 0) {
 				throw new IllegalArgumentException("rowCount must not be negative: " + rowCount);
 			} else if (columnCount < 0) {
 				throw new IllegalArgumentException("columnCount must not be negative: " + columnCount);
 			}
-
-			this.rowCount = rowCount;
-			this.columnCount = columnCount;
 		}
 	}
 

@@ -192,16 +192,16 @@ public class BooleanMatrixFormatter {
 		}
 
 		/**
-		 * @param sb
+		 * @param result
 		 * @param outputRow
 		 * @since 0.1.0
 		 */
-		private void appenNewLine(StringBuilder sb, List<String> outputRow) {
-			if (sb.length() > 0) {
-				sb.append("\n");
+		private void appenNewLine(StringBuilder result, List<String> outputRow) {
+			if (!result.isEmpty()) {
+				result.append("\n");
 			}
 
-			outputRow.forEach(sb::append);
+			outputRow.forEach(result::append);
 		}
 
 		/**
@@ -226,7 +226,7 @@ public class BooleanMatrixFormatter {
 		 * @since 0.1.0
 		 */
 		private String format(boolean[][] matrix) {
-			StringBuilder sb = new StringBuilder();
+			StringBuilder result = new StringBuilder();
 
 			List<String> outputRow = new ArrayList<>();
 			int pass = 0;
@@ -237,17 +237,17 @@ public class BooleanMatrixFormatter {
 				apply(matrix[iRow], outputRow, pass);
 
 				if (pass == 2) {
-					appenNewLine(sb, outputRow);
+					appenNewLine(result, outputRow);
 					outputRow.clear();
 					pass = 0;
 				}
 			}
 
 			if (!outputRow.isEmpty()) {
-				appenNewLine(sb, outputRow);
+				appenNewLine(result, outputRow);
 			}
 
-			return sb.toString();
+			return result.toString();
 		}
 
 		/**
@@ -280,6 +280,26 @@ public class BooleanMatrixFormatter {
 	 */
 	public static BooleanMatrixFormatterBuilder builder() {
 		return new BooleanMatrixFormatterBuilder();
+	}
+
+	/**
+	 * @param row
+	 *            row to validate
+	 * @param expectedLength
+	 *            expected row length, or {@code -1} for the first row
+	 * @return the row length
+	 * @since 0.1.0
+	 */
+	private static int validateRow(boolean[] row, int expectedLength) {
+		if (row == null) {
+			throw new IllegalArgumentException("Matrix must not contain null rows!");
+		} else if (row.length == 0) {
+			throw new IllegalArgumentException("Matrix must not contain empty rows!");
+		} else if (expectedLength > -1 && row.length != expectedLength) {
+			throw new IllegalArgumentException("Matrix is not regular: All rows must have the same length!");
+		}
+
+		return row.length;
 	}
 
 	/**
@@ -327,35 +347,48 @@ public class BooleanMatrixFormatter {
 			return HALF_LINE_BLOCKS_FORMATTER.format(matrix);
 		}
 
-		StringBuilder sb = new StringBuilder();
+		return formatRows(matrix);
+	}
+
+	/**
+	 * @param result
+	 *            {@link StringBuilder}
+	 * @param row
+	 *            row to append
+	 * @since 0.1.0
+	 */
+	private void appendRow(StringBuilder result, boolean[] row) {
+		for (int iColumn = 0; iColumn < row.length; iColumn++) {
+			if (format == Format.TRUE_AND_FALSE_WITH_SEPARATOR && iColumn > 0) {
+				result.append(columnSeparator);
+			}
+
+			result.append(formatValue(row[iColumn]));
+		}
+	}
+
+	/**
+	 * @param matrix
+	 *            matrix to format
+	 * @return formatted matrix
+	 * @since 0.1.0
+	 */
+	private String formatRows(boolean[][] matrix) {
+		StringBuilder result = new StringBuilder();
 		int rowLength = -1;
 
 		for (int iRow = 0; iRow < matrix.length; iRow++) {
-			if (matrix[iRow] == null) {
-				throw new IllegalArgumentException("Matrix must not contain null rows!");
-			} else if (matrix[iRow].length == 0) {
-				throw new IllegalArgumentException("Matrix must not contain empty rows!");
-			} else if (rowLength > -1 && matrix[iRow].length != rowLength) {
-				throw new IllegalArgumentException("Matrix is not regular: All rows must have the same length!");
-			}
-
-			rowLength = matrix[iRow].length;
+			boolean[] row = matrix[iRow];
+			rowLength = validateRow(row, rowLength);
 
 			if (iRow > 0) {
-				sb.append("\n");
+				result.append("\n");
 			}
 
-			for (int iColumn = 0; iColumn < matrix[iRow].length; iColumn++) {
-				if (format == Format.TRUE_AND_FALSE_WITH_SEPARATOR && iColumn > 0) {
-					sb.append(columnSeparator);
-				}
-
-				sb.append(formatValue(matrix[iRow][iColumn]));
-
-			}
+			appendRow(result, row);
 		}
 
-		return sb.toString();
+		return result.toString();
 	}
 
 	/**
