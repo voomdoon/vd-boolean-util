@@ -6,9 +6,11 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.stream.Stream;
 
+import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -52,7 +54,9 @@ class BooleanMatrixFormatterTest {
 			void test_default() throws Exception {
 				BooleanMatrixFormatter formatter = new BooleanMatrixFormatterBuilder().build();
 
-				assertDoesNotThrow(() -> formatter.format(new boolean[][] { { false, true } }));
+				Executable action = () -> formatter.format(new boolean[][] { { false, true } });
+
+				assertDoesNotThrow(action);
 			}
 
 			/**
@@ -86,8 +90,9 @@ class BooleanMatrixFormatterTest {
 			void test_error_IAE_null() throws Exception {
 				BooleanMatrixFormatterBuilder builder = BooleanMatrixFormatter.builder();
 
-				assertThatThrownBy(() -> builder.withColumnSeparator(null)).isInstanceOf(NullPointerException.class)
-						.hasMessageContaining("separator");
+				ThrowingCallable action = () -> builder.withColumnSeparator(null);
+
+				assertThatThrownBy(action).isInstanceOf(NullPointerException.class).hasMessageContaining("separator");
 			}
 
 			/**
@@ -147,8 +152,9 @@ class BooleanMatrixFormatterTest {
 				BooleanMatrixFormatterBuilder builder = BooleanMatrixFormatter.builder();
 				builder.withFormat(Format.DOUBLE_WIDTH_BLOCKS);
 
-				assertThatThrownBy(() -> builder.withDoubleWidthBlocksFalseValue(falseValue))
-						.isInstanceOf(IllegalArgumentException.class)//
+				ThrowingCallable action = () -> builder.withDoubleWidthBlocksFalseValue(falseValue);
+
+				assertThatThrownBy(action).isInstanceOf(IllegalArgumentException.class)//
 						.hasMessageContaining("length")//
 						.hasMessageContaining(falseValue);
 			}
@@ -161,8 +167,9 @@ class BooleanMatrixFormatterTest {
 				BooleanMatrixFormatterBuilder builder = BooleanMatrixFormatter.builder();
 				builder.withFormat(Format.DOUBLE_WIDTH_BLOCKS);
 
-				assertThatThrownBy(() -> builder.withDoubleWidthBlocksFalseValue(null))
-						.isInstanceOf(NullPointerException.class)//
+				ThrowingCallable action = () -> builder.withDoubleWidthBlocksFalseValue(null);
+
+				assertThatThrownBy(action).isInstanceOf(NullPointerException.class)//
 						.hasMessageContaining("falseValue");
 			}
 
@@ -174,8 +181,9 @@ class BooleanMatrixFormatterTest {
 				BooleanMatrixFormatterBuilder builder = BooleanMatrixFormatter.builder();
 				builder.withFormat(Format.ONE_AND_ZERO);
 
-				assertThatThrownBy(() -> builder.withDoubleWidthBlocksFalseValue("--"))
-						.isInstanceOf(IllegalStateException.class)//
+				ThrowingCallable action = () -> builder.withDoubleWidthBlocksFalseValue("--");
+
+				assertThatThrownBy(action).isInstanceOf(IllegalStateException.class)//
 						.extracting(Throwable::getMessage).asString().containsIgnoringCase("format");
 			}
 
@@ -224,8 +232,9 @@ class BooleanMatrixFormatterTest {
 			void test_error_IAE_null() throws Exception {
 				BooleanMatrixFormatterBuilder builder = BooleanMatrixFormatter.builder();
 
-				assertThatThrownBy(() -> builder.withFormat(null)).isInstanceOf(NullPointerException.class)
-						.hasMessageContaining("format");
+				ThrowingCallable action = () -> builder.withFormat(null);
+
+				assertThatThrownBy(action).isInstanceOf(NullPointerException.class).hasMessageContaining("format");
 			}
 
 			/**
@@ -359,8 +368,9 @@ class BooleanMatrixFormatterTest {
 			 */
 			@Test
 			void test_IAE_rowNull() throws Exception {
-				assertThatThrownBy(() -> format(new boolean[][] { null })).isInstanceOf(IllegalArgumentException.class)
-						.hasMessageContaining("null");
+				ThrowingCallable action = () -> format(new boolean[][] { null });
+
+				assertThatThrownBy(action).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("null");
 			}
 
 			/**
@@ -368,8 +378,9 @@ class BooleanMatrixFormatterTest {
 			 */
 			@Test
 			void test_IAE_rowsEmpty() throws Exception {
-				assertThatThrownBy(() -> format(new boolean[][] { {}, {} }))
-						.isInstanceOf(IllegalArgumentException.class).hasMessageContaining("empty");
+				ThrowingCallable action = () -> format(new boolean[][] { {}, {} });
+
+				assertThatThrownBy(action).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("empty");
 			}
 
 			/**
@@ -377,8 +388,9 @@ class BooleanMatrixFormatterTest {
 			 */
 			@Test
 			void test_IAE_rowsHaveDifferentLengths() throws Exception {
-				assertThatThrownBy(() -> format(new boolean[][] { { true }, { true, false } }))
-						.isInstanceOf(IllegalArgumentException.class).hasMessageContaining("regular");
+				ThrowingCallable action = () -> format(new boolean[][] { { true }, { true, false } });
+
+				assertThatThrownBy(action).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("regular");
 			}
 
 			/**
@@ -386,8 +398,9 @@ class BooleanMatrixFormatterTest {
 			 */
 			@Test
 			void test_NPE_null() throws Exception {
-				assertThatThrownBy(() -> format(null)).isInstanceOf(NullPointerException.class)
-						.hasMessageContaining("matrix");
+				ThrowingCallable action = () -> format(null);
+
+				assertThatThrownBy(action).isInstanceOf(NullPointerException.class).hasMessageContaining("matrix");
 			}
 		}
 

@@ -3,6 +3,8 @@ package de.voomdoon.util.bool.matrix;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
+
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -40,9 +42,10 @@ class BooleanMatrixCalculatorTest {
 		 */
 		@Test
 		void test_error_IllegalArgumentException_columnCountOfLeftSmaller() throws Exception {
-			assertThatThrownBy(() -> {
-				BooleanMatrixCalculator.or(new boolean[][] { { false } }, new boolean[][] { { false, false } });
-			}).isInstanceOf(IllegalArgumentException.class)//
+			ThrowingCallable action = () -> BooleanMatrixCalculator.or(new boolean[][] { { false } },
+					new boolean[][] { { false, false } });
+
+			assertThatThrownBy(action).isInstanceOf(IllegalArgumentException.class)//
 					.hasMessageContainingAll("column", "count", "1", "2");
 		}
 
@@ -51,9 +54,10 @@ class BooleanMatrixCalculatorTest {
 		 */
 		@Test
 		void test_error_IllegalArgumentException_columnCountOfRightSmaller() throws Exception {
-			assertThatThrownBy(() -> {
-				BooleanMatrixCalculator.or(new boolean[][] { { false, false } }, new boolean[][] { { false } });
-			}).isInstanceOf(IllegalArgumentException.class)//
+			ThrowingCallable action = () -> BooleanMatrixCalculator.or(new boolean[][] { { false, false } },
+					new boolean[][] { { false } });
+
+			assertThatThrownBy(action).isInstanceOf(IllegalArgumentException.class)//
 					.hasMessageContainingAll("column", "count", "1", "2");
 		}
 
@@ -62,9 +66,10 @@ class BooleanMatrixCalculatorTest {
 		 */
 		@Test
 		void test_error_IllegalArgumentException_rowCountOfLeftSmaller() throws Exception {
-			assertThatThrownBy(() -> {
-				BooleanMatrixCalculator.or(new boolean[][] { { false } }, new boolean[][] { { false }, { false } });
-			}).isInstanceOf(IllegalArgumentException.class)//
+			ThrowingCallable action = () -> BooleanMatrixCalculator.or(new boolean[][] { { false } },
+					new boolean[][] { { false }, { false } });
+
+			assertThatThrownBy(action).isInstanceOf(IllegalArgumentException.class)//
 					.hasMessageContainingAll("row", "count", "1", "2");
 		}
 
@@ -73,9 +78,10 @@ class BooleanMatrixCalculatorTest {
 		 */
 		@Test
 		void test_error_IllegalArgumentException_rowCountOfRightSmaller() throws Exception {
-			assertThatThrownBy(() -> {
-				BooleanMatrixCalculator.or(new boolean[][] { { false }, { false } }, new boolean[][] { { false } });
-			}).isInstanceOf(IllegalArgumentException.class)//
+			ThrowingCallable action = () -> BooleanMatrixCalculator.or(new boolean[][] { { false }, { false } },
+					new boolean[][] { { false } });
+
+			assertThatThrownBy(action).isInstanceOf(IllegalArgumentException.class)//
 					.hasMessageContainingAll("row", "count", "1", "2");
 		}
 

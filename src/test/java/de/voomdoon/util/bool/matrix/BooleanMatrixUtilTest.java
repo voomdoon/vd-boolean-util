@@ -3,6 +3,8 @@ package de.voomdoon.util.bool.matrix;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
+
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Nested;
@@ -108,8 +110,10 @@ public class BooleanMatrixUtilTest {
 		 */
 		@Test
 		void test_error_NPE_columnNull() throws Exception {
-			assertThatThrownBy(() -> BooleanMatrixUtil.countTrue(new boolean[][] { null }))
-					.isInstanceOf(NullPointerException.class).hasMessageContaining("row").hasMessageContaining("0");
+			ThrowingCallable action = () -> BooleanMatrixUtil.countTrue(new boolean[][] { null });
+
+			assertThatThrownBy(action).isInstanceOf(NullPointerException.class).hasMessageContaining("row")
+					.hasMessageContaining("0");
 		}
 
 		/**
@@ -117,8 +121,9 @@ public class BooleanMatrixUtilTest {
 		 */
 		@Test
 		void test_error_NPE_matrixNull() throws Exception {
-			assertThatThrownBy(() -> BooleanMatrixUtil.countTrue(null)).isInstanceOf(NullPointerException.class)
-					.hasMessageContaining("matrix");
+			ThrowingCallable action = () -> BooleanMatrixUtil.countTrue(null);
+
+			assertThatThrownBy(action).isInstanceOf(NullPointerException.class).hasMessageContaining("matrix");
 		}
 
 		/**
@@ -404,8 +409,10 @@ public class BooleanMatrixUtilTest {
 		 */
 		@Test
 		void test_error_NPE_columnNull() throws Exception {
-			assertThatThrownBy(() -> BooleanMatrixUtil.isAllFalse(new boolean[][] { null }))
-					.isInstanceOf(NullPointerException.class).hasMessageContaining("row").hasMessageContaining("0");
+			ThrowingCallable action = () -> BooleanMatrixUtil.isAllFalse(new boolean[][] { null });
+
+			assertThatThrownBy(action).isInstanceOf(NullPointerException.class).hasMessageContaining("row")
+					.hasMessageContaining("0");
 		}
 
 		/**
@@ -413,8 +420,9 @@ public class BooleanMatrixUtilTest {
 		 */
 		@Test
 		void test_error_NPE_matrixNull() throws Exception {
-			assertThatThrownBy(() -> BooleanMatrixUtil.isAllFalse(null)).isInstanceOf(NullPointerException.class)
-					.hasMessageContaining("matrix");
+			ThrowingCallable action = () -> BooleanMatrixUtil.isAllFalse(null);
+
+			assertThatThrownBy(action).isInstanceOf(NullPointerException.class).hasMessageContaining("matrix");
 		}
 	}
 }

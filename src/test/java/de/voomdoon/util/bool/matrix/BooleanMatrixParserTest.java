@@ -3,6 +3,8 @@ package de.voomdoon.util.bool.matrix;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -51,8 +53,9 @@ class BooleanMatrixParserTest {
 				 */
 				@Test
 				void test_error_IAE_illegalCharacter_right() throws Exception {
-					assertThatThrownBy(() -> parser.parseMatrix("1α")).isInstanceOf(IllegalArgumentException.class)
-							.hasMessageContaining("α");
+					ThrowingCallable action = () -> parser.parseMatrix("1α");
+
+					assertThatThrownBy(action).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("α");
 				}
 
 				/**
@@ -121,8 +124,9 @@ class BooleanMatrixParserTest {
 				 */
 				@Test
 				void test_error_IAE_illegalCharacter_left() throws Exception {
-					assertThatThrownBy(() -> parser.parseMatrix("██  α█")).isInstanceOf(IllegalArgumentException.class)
-							.hasMessageContaining("α");
+					ThrowingCallable action = () -> parser.parseMatrix("██  α█");
+
+					assertThatThrownBy(action).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("α");
 				}
 
 				/**
@@ -130,8 +134,9 @@ class BooleanMatrixParserTest {
 				 */
 				@Test
 				void test_error_IAE_illegalCharacter_right() throws Exception {
-					assertThatThrownBy(() -> parser.parseMatrix("██  █α")).isInstanceOf(IllegalArgumentException.class)
-							.hasMessageContaining("α");
+					ThrowingCallable action = () -> parser.parseMatrix("██  █α");
+
+					assertThatThrownBy(action).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("α");
 				}
 
 				/**
@@ -139,7 +144,9 @@ class BooleanMatrixParserTest {
 				 */
 				@Test
 				void test_error_IAE_invalidFormat() throws Exception {
-					assertThatThrownBy(() -> parser.parseMatrix("██  █")).isInstanceOf(IllegalArgumentException.class);
+					ThrowingCallable action = () -> parser.parseMatrix("██  █");
+
+					assertThatThrownBy(action).isInstanceOf(IllegalArgumentException.class);
 				}
 
 				/**
@@ -213,8 +220,9 @@ class BooleanMatrixParserTest {
 				 */
 				@Test
 				void test_error_IAE_illegalCharacter_right() throws Exception {
-					assertThatThrownBy(() -> parser.parseMatrix("▀α")).isInstanceOf(IllegalArgumentException.class)
-							.hasMessageContaining("α");
+					ThrowingCallable action = () -> parser.parseMatrix("▀α");
+
+					assertThatThrownBy(action).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("α");
 				}
 
 				/**

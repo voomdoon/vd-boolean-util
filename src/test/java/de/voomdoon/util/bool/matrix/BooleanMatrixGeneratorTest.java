@@ -9,6 +9,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 
+import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -45,7 +46,9 @@ class BooleanMatrixGeneratorTest {
 		 */
 		@Test
 		void test_erorr_IllegalArgumentException_columnCount_negative() throws Exception {
-			assertThatThrownBy(() -> new BooleanMatrixSize(0, -1)).isInstanceOf(IllegalArgumentException.class);
+			ThrowingCallable action = () -> new BooleanMatrixSize(0, -1);
+
+			assertThatThrownBy(action).isInstanceOf(IllegalArgumentException.class);
 		}
 
 		/**
@@ -53,7 +56,9 @@ class BooleanMatrixGeneratorTest {
 		 */
 		@Test
 		void test_erorr_IllegalArgumentException_rowCount_negative() throws Exception {
-			assertThatThrownBy(() -> new BooleanMatrixSize(-1, 0)).isInstanceOf(IllegalArgumentException.class);
+			ThrowingCallable action = () -> new BooleanMatrixSize(-1, 0);
+
+			assertThatThrownBy(action).isInstanceOf(IllegalArgumentException.class);
 		}
 	}
 
