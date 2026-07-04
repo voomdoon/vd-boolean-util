@@ -43,6 +43,7 @@ public class BooleanMatrixGenerator {
 		/**
 		 * Builds the {@link BooleanMatrixGenerator} using the configured suppliers.
 		 * 
+		 * @return the configured generator
 		 * @since 0.1.0
 		 */
 		public BooleanMatrixGenerator build() {
@@ -55,7 +56,8 @@ public class BooleanMatrixGenerator {
 		 * Sets the supplier for the matrix size.
 		 * 
 		 * @param sizeSupplier
-		 * @return
+		 *            supplier for the generated matrix size
+		 * @return this builder
 		 * @since 0.1.0
 		 */
 		public BooleanMatrixGeneratorBuilder withSizeSupplier(BooleanMatrixSizeSupplier sizeSupplier) {
@@ -68,7 +70,8 @@ public class BooleanMatrixGenerator {
 		 * Sets the provider for generating boolean values in the matrix.
 		 * 
 		 * @param valueProvider
-		 * @return
+		 *            provider for generated cell values
+		 * @return this builder
 		 * @since 0.1.0
 		 */
 		public BooleanMatrixGeneratorBuilder withValueProvider(BooleanMatrixValueProvider valueProvider) {
@@ -103,9 +106,12 @@ public class BooleanMatrixGenerator {
 		 * Provides the boolean value for the specified cell in the matrix.
 		 * 
 		 * @param row
+		 *            zero-based row index
 		 * @param column
+		 *            zero-based column index
 		 * @param size
-		 * @return
+		 *            size of the generated matrix
+		 * @return the value for the specified cell
 		 * @since 0.1.0
 		 */
 		boolean get(int row, int column, BooleanMatrixSize size);
@@ -126,6 +132,8 @@ public class BooleanMatrixGenerator {
 		private boolean value;
 
 		/**
+		 * Creates a provider for the specified constant value.
+		 *
 		 * @param value
 		 *            The constant value to return for all cells in the matrix.
 		 * @since 0.1.0
@@ -153,6 +161,15 @@ public class BooleanMatrixGenerator {
 	public static class EmptyBooleanMatrixSizeSupplier implements BooleanMatrixSizeSupplier {
 
 		/**
+		 * Creates a supplier for an empty matrix size.
+		 *
+		 * @since 0.1.0
+		 */
+		public EmptyBooleanMatrixSizeSupplier() {
+			// stateless
+		}
+
+		/**
 		 * @since 0.1.0
 		 */
 		@Override
@@ -166,11 +183,17 @@ public class BooleanMatrixGenerator {
 	 *
 	 * @author André Schulz
 	 *
+	 * @param rowCount
+	 *            the amount of rows
+	 * @param columnCount
+	 *            the amount of columns
 	 * @since 0.1.0
 	 */
 	public record BooleanMatrixSize(int rowCount, int columnCount) {
 
 		/**
+		 * Validates and creates a matrix size.
+		 *
 		 * @param rowCount
 		 *            the amount of rows
 		 * @param columnCount

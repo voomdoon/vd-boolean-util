@@ -13,6 +13,15 @@ import java.util.List;
 public class BooleanMatrixParser {
 
 	/**
+	 * Creates a parser that auto-detects digits, literals, or full-line blocks.
+	 *
+	 * @since 0.1.0
+	 */
+	public BooleanMatrixParser() {
+		// default configuration
+	}
+
+	/**
 	 * @since 0.1.0
 	 */
 	private boolean useHalfLineBlocks;

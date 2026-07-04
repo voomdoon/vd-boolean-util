@@ -23,14 +23,27 @@ public class BooleanMatrixFormatter {
 	public static class BooleanMatrixFormatterBuilder {
 
 		/**
+		 * Default separator between columns.
+		 *
 		 * @since 0.1.0
 		 */
 		public static final String DEFAULT_COLUMN_SEPARATOR = ",";
 
 		/**
+		 * Default output format.
+		 *
 		 * @since 0.1.0
 		 */
 		public static final Format DEFAULT_FORMAT = Format.TRUE_AND_FALSE_WITH_SEPARATOR;
+
+		/**
+		 * Creates a new builder with the default format and column separator.
+		 *
+		 * @since 0.1.0
+		 */
+		public BooleanMatrixFormatterBuilder() {
+			// default values
+		}
 
 		/**
 		 * @since 0.1.0
@@ -59,6 +72,8 @@ public class BooleanMatrixFormatter {
 		}
 
 		/**
+		 * Sets the separator to place between columns.
+		 *
 		 * @param separator
 		 *            column separator {@link String}
 		 * @return this {@link BooleanMatrixFormatterBuilder}
@@ -87,7 +102,8 @@ public class BooleanMatrixFormatter {
 		}
 
 		/**
-		 * 
+		 * Sets the output format.
+		 *
 		 * @param format
 		 *            {@link Format}
 		 * @return this {@link BooleanMatrixFormatterBuilder}
@@ -128,21 +144,29 @@ public class BooleanMatrixFormatter {
 	public enum Format {
 
 		/**
+		 * Two-character-wide full blocks for true values.
+		 *
 		 * @since 0.1.0
 		 */
 		DOUBLE_WIDTH_BLOCKS,
 
 		/**
+		 * Half-height blocks combining two matrix rows per output row.
+		 *
 		 * @since 0.1.0
 		 */
 		HALF_BLOCKS,
 
 		/**
+		 * Digits {@code 1} and {@code 0} for true and false values.
+		 *
 		 * @since 0.1.0
 		 */
 		ONE_AND_ZERO,
 
 		/**
+		 * Boolean literals separated by the configured column separator.
+		 *
 		 * @since 0.1.0
 		 */
 		TRUE_AND_FALSE_WITH_SEPARATOR,
